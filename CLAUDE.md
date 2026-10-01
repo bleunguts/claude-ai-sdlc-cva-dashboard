@@ -14,11 +14,9 @@ Two-part narrative this project is built to support: (a) real CVA domain depth â
 - Keep "less is more": concise responses, no padding.
 
 ## Workflow per module
-GitHub issue -> branch -> implementation -> PR. Never commit directly to `main`.
+Follow the shared workflow in `~/.claude/CLAUDE.md` (issue -> `feature/<n>-name` branch -> PR with `Closes #N`). Module-specific additions:
 - Raise one issue per module (title `Module N: <stage> (<tool>)`), with the starter prompt, critique checklist and "Done when" from ROADMAP.md.
-- Branch from `main` as `module-N-<tool>` (e.g. `module-1-stitch`).
-- Each PR links the issue (`Closes #N`), contains the module's committed output artefact, and updates the ROADMAP.md status table and the Session log below.
-- At the end of each session, suggest a commit message.
+- Each PR contains the module's committed output artefact and updates the ROADMAP.md status table and the Session log below.
 
 ## Architecture
 ```
