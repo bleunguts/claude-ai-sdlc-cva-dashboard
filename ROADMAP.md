@@ -2,7 +2,7 @@
 
 A six-module walkthrough of an AI-assisted SDLC, one tool per stage, run against a single small CVA monitoring dashboard. Each module's output is a concrete, interview-ready artefact — not just familiarity with a tool, but a demonstrated reason for picking it at that stage.
 
-**Status:** Module 1 not yet started.
+**Status:** Module 1 (Stitch) in progress. Artefacts in `design/`.
 
 ## Domain choice
 
@@ -16,7 +16,7 @@ CVA, not FX, IR swaps, equity derivs or general credit. Reasoning:
 
 | # | Module | Tool | Output | Status |
 |---|---|---|---|---|
-| 1 | Design | Stitch | Dashboard mockup (dense data table + filter panel), prompt iterated once | Planned |
+| 1 | Design | Stitch (vs Figma AI / v0) | 2–3 dashboard mockup variants (dense data table + filter panel) + one refined version, with a tool comparison note | In progress |
 | 2 | Build | Replit Agent | Working React repo, scaffolded from the Stitch design + mock CVA data | Planned |
 | 3 | Component testing | Storybook | Grid component isolated, 2–3 stories (empty / populated / error) | Planned |
 | 4 | E2E testing | Playwright | One passing test: load dashboard, apply filter, assert row(s) | Planned |
@@ -61,17 +61,21 @@ One module per weekend session. Each module: generate/build with the starter pro
 
 ## Module 1: Design (Stitch)
 
-**Learn:** Writing a precise UI prompt — layout, data density, component list — and iterating critically on the first result.
+**Learn:** Rapid UI prototyping with AI — the highest-leverage module, replacing hand-drawn mocks, UML diagrams and slide decks. Learn to write a precise UI prompt (layout, data density, component list), generate several variants, iterate critically, and compare the prototyping tools (Stitch vs Figma AI vs v0) so the choice can be justified.
 
 **Starter prompt:**
 > "Design a dashboard for monitoring CVA charge by counterparty. Include a dense data table (counterparty, CDS spread, tenor, CVA charge, timestamp) and a filter panel (counterparty selector, date range). Style: professional, financial services, minimal."
+
+**Variants to generate (2–3):** e.g. left-rail vs top-bar filters; different data densities.
 
 **Critique checklist before iterating:**
 - Is the table actually dense (trading-terminal-like), or does it read as a generic SaaS list?
 - Does the filter panel placement make sense (left rail vs top bar)?
 - Any component present that should be cut for scope?
 
-**Done when:** a refined mockup exists, exported to `design/`, plus a one-line note on what the second prompt changed and why.
+**Tool comparison:** run the same starter prompt in a second tool (Figma AI or v0, ~20 min timebox) and note what each does better or worse (fidelity, density control, editability, export, speed).
+
+**Done when:** 2–3 variants plus one refined mockup exist, exported to `design/`, with a prompt log, a one-line note per iteration on what changed and why, and a short Stitch-vs-alternative comparison note.
 
 ## Module 2 design question
 

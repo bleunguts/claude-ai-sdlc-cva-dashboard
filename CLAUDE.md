@@ -40,3 +40,4 @@ Module-by-module plan, prompts, and status live in [ROADMAP.md](ROADMAP.md), the
 
 ## Session log
 - Session 0: repo scaffolded from the claude-mcp-* template (README / CLAUDE.md / ROADMAP.md pattern). Domain settled on CVA (counterparty/CDS-spread monitoring) over FX, IR swaps or equity derivs — see ROADMAP.md for the reasoning. Module 1 (Stitch) not yet started.
+- Session 1: Module 1 (Stitch). Generated the CVA monitor and a deep-dive screen; exported to AI Studio (clean code export) and Figma Make (clunky export, drifted on typography/density). Artefacts and comparison in design/README.md.
