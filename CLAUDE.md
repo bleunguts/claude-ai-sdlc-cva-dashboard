@@ -14,9 +14,11 @@ Two-part narrative this project is built to support: (a) real CVA domain depth â
 - Keep "less is more": concise responses, no padding.
 
 ## Workflow per module
-Follow the shared workflow in `~/.claude/CLAUDE.md` (issue -> `feature/<n>-name` branch -> PR with `Closes #N`). Module-specific additions:
+GitHub issue -> branch -> implementation -> PR. Never commit directly to `main`.
 - Raise one issue per module (title `Module N: <stage> (<tool>)`), with the starter prompt, critique checklist and "Done when" from ROADMAP.md.
-- Each PR contains the module's committed output artefact and updates the ROADMAP.md status table and the Session log below.
+- Branch from `main` as `module-N-<tool>` (e.g. `module-1-stitch`).
+- Each PR links the issue (`Closes #N`), contains the module's committed output artefact, and updates the ROADMAP.md status table and the Session log below.
+- At the end of each session, suggest a commit message.
 
 ## Architecture
 ```
@@ -38,3 +40,4 @@ Module-by-module plan, prompts, and status live in [ROADMAP.md](ROADMAP.md), the
 
 ## Session log
 - Session 0: repo scaffolded from the claude-mcp-* template (README / CLAUDE.md / ROADMAP.md pattern). Domain settled on CVA (counterparty/CDS-spread monitoring) over FX, IR swaps or equity derivs â€” see ROADMAP.md for the reasoning. Module 1 (Stitch) not yet started.
+- Session 1: Module 1 (Stitch). Generated the CVA monitor and a deep-dive screen; exported to AI Studio (clean code export) and Figma Make (clunky export, drifted on typography/density). Artefacts and comparison in design/README.md.
