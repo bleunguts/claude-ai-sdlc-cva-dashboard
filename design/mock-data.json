@@ -1,0 +1,182 @@
+[
+  {
+    "counterparty": "BNP Paribas SA",
+    "lei": "549300VYZUK7S707I053",
+    "bucket": "G-SIBs",
+    "cdsSpreadBps": 64.2,
+    "tenor": "5Y",
+    "cvaCharge": 3080000,
+    "timestamp": "2026-10-06T14:20:00Z"
+  },
+  {
+    "counterparty": "Deutsche Bank AG",
+    "lei": "7LTWFZYICNSX8D621K86",
+    "bucket": "G-SIBs",
+    "cdsSpreadBps": 112.4,
+    "tenor": "5Y",
+    "cvaCharge": 4270000,
+    "timestamp": "2026-10-06T14:21:13Z"
+  },
+  {
+    "counterparty": "JPMorgan Chase & Co",
+    "lei": "K9P34Y6N3WD25RQ4F5ZR",
+    "bucket": "G-SIBs",
+    "cdsSpreadBps": 58.0,
+    "tenor": "5Y",
+    "cvaCharge": 4870000,
+    "timestamp": "2026-10-06T14:22:26Z"
+  },
+  {
+    "counterparty": "Goldman Sachs Group Inc",
+    "lei": "37E3P3E2Z8IQ9Y7JZB6C",
+    "bucket": "G-SIBs",
+    "cdsSpreadBps": 84.5,
+    "tenor": "5Y",
+    "cvaCharge": 5070000,
+    "timestamp": "2026-10-06T14:20:39Z"
+  },
+  {
+    "counterparty": "Barclays PLC",
+    "lei": "213800LBQA1Y9L22JB70",
+    "bucket": "G-SIBs",
+    "cdsSpreadBps": 98.5,
+    "tenor": "3Y",
+    "cvaCharge": 2820000,
+    "timestamp": "2026-10-06T14:21:52Z"
+  },
+  {
+    "counterparty": "HSBC Holdings PLC",
+    "lei": "N6Z43DVYRKTTNJFBF5JX",
+    "bucket": "G-SIBs",
+    "cdsSpreadBps": 67.5,
+    "tenor": "5Y",
+    "cvaCharge": 3510000,
+    "timestamp": "2026-10-06T14:22:05Z"
+  },
+  {
+    "counterparty": "UBS Group AG",
+    "lei": "VLSI47WQAL9VQ24ZKLMV",
+    "bucket": "G-SIBs",
+    "cdsSpreadBps": 61.0,
+    "tenor": "7Y",
+    "cvaCharge": 2850000,
+    "timestamp": "2026-10-06T14:20:18Z"
+  },
+  {
+    "counterparty": "Citigroup Inc",
+    "lei": "T45HU43JSIOM1TMA7V3D",
+    "bucket": "G-SIBs",
+    "cdsSpreadBps": 88.0,
+    "tenor": "5Y",
+    "cvaCharge": 4930000,
+    "timestamp": "2026-10-06T14:21:31Z"
+  },
+  {
+    "counterparty": "Republic of Italy",
+    "lei": "I8FPPV5ASPZH8RZHQMOE",
+    "bucket": "Sovereigns",
+    "cdsSpreadBps": 118.0,
+    "tenor": "10Y",
+    "cvaCharge": 5370000,
+    "timestamp": "2026-10-06T14:22:44Z"
+  },
+  {
+    "counterparty": "Federative Republic of Brazil",
+    "lei": "95B9EE0VBGI09QYNK8W3",
+    "bucket": "Sovereigns",
+    "cdsSpreadBps": 205.0,
+    "tenor": "10Y",
+    "cvaCharge": 6660000,
+    "timestamp": "2026-10-06T14:20:57Z"
+  },
+  {
+    "counterparty": "Siemens AG",
+    "lei": "52990024ZP0L7244Y147",
+    "bucket": "Corporates",
+    "cdsSpreadBps": 42.0,
+    "tenor": "2Y",
+    "cvaCharge": 640000,
+    "timestamp": "2026-10-06T13:58:40Z"
+  },
+  {
+    "counterparty": "Toyota Motor Corp",
+    "lei": "3538006EUS8B5OQ64132",
+    "bucket": "Corporates",
+    "cdsSpreadBps": 38.5,
+    "tenor": "1Y",
+    "cvaCharge": 350000,
+    "timestamp": "2026-10-06T13:41:12Z"
+  },
+  {
+    "counterparty": "TotalEnergies SE",
+    "lei": "TZPPPP6UP3C4DSA7L360",
+    "bucket": "Corporates",
+    "cdsSpreadBps": 49.8,
+    "tenor": "5Y",
+    "cvaCharge": 1590000,
+    "timestamp": "2026-10-06T14:20:36Z"
+  },
+  {
+    "counterparty": "Nomura Holdings Inc",
+    "lei": "5493004N60X5894P5P83",
+    "bucket": "Corporates",
+    "cdsSpreadBps": 124.0,
+    "tenor": "3Y",
+    "cvaCharge": 1930000,
+    "timestamp": "2026-10-06T14:21:49Z"
+  },
+  {
+    "counterparty": "Telefónica SA",
+    "lei": "9Y6N14DO9GMNU77VTUUJ",
+    "bucket": "Corporates",
+    "cdsSpreadBps": 96.0,
+    "tenor": "7Y",
+    "cvaCharge": 2250000,
+    "timestamp": "2026-10-06T14:22:02Z"
+  },
+  {
+    "counterparty": "Glencore International AG",
+    "lei": "5493002W8T0M42079637",
+    "bucket": "Commodities",
+    "cdsSpreadBps": 145.0,
+    "tenor": "5Y",
+    "cvaCharge": 2030000,
+    "timestamp": "2026-10-06T14:20:15Z"
+  },
+  {
+    "counterparty": "Petróleo Brasileiro SA",
+    "lei": "596LGUAX1DXN9Y1XJ5GX",
+    "bucket": "Commodities",
+    "cdsSpreadBps": 290.5,
+    "tenor": "10Y",
+    "cvaCharge": 3780000,
+    "timestamp": "2026-10-06T14:21:28Z"
+  },
+  {
+    "counterparty": "Vitol Holding BV",
+    "lei": "NAMEYYWLECFPECXVM11H",
+    "bucket": "Commodities",
+    "cdsSpreadBps": 135.0,
+    "tenor": "3Y",
+    "cvaCharge": 1400000,
+    "timestamp": "2026-10-06T14:22:41Z"
+  },
+  {
+    "counterparty": "Rio Tinto plc",
+    "lei": "UGCMSMN5E6EUCLDU0UM5",
+    "bucket": "Commodities",
+    "cdsSpreadBps": 72.0,
+    "tenor": "5Y",
+    "cvaCharge": 1580000,
+    "timestamp": "2026-10-06T14:20:54Z"
+  },
+  {
+    "counterparty": "Trafigura Group",
+    "lei": "7OCUBRL5PTP5AA819T9U",
+    "bucket": "Commodities",
+    "cdsSpreadBps": null,
+    "tenor": "3Y",
+    "cvaCharge": null,
+    "timestamp": "2026-10-06T14:21:07Z"
+  }
+]
