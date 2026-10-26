@@ -30,8 +30,13 @@
 | AI Studio | Design to app | Generated a working app from the Stitch export (screenshot not captured) | Inherited from the Stitch export | Chat | Easy: zip or GitHub | Fast |
 | Figma + Figma Make | Refine, design to app | Drifted: serif font, lost monospace numerics and Compact/Standard toggle, 8 rows with pagination (denser in Stitch) | Weak | Strong on design layers | Clunky, hard to find | Medium |
 
-**Verdict (draft):** Stitch for generating the design, AI Studio for the quickest design-to-code, Figma for design-layer refinement. Replit Agent (Module 2) is the build tool under test.
+**Verdict:** Stitch for generating the design, AI Studio for the quickest design-to-code, Figma for design-layer refinement. Replit Agent (Module 2) is the build tool under test.
 
 ## Retro
 - The refinement worked better because it asked for less: less clutter, more MVP. Cutting nav, KPI tiles and extra columns left the table as the focus, which is what makes it read as terminal-dense.
 - Figma Make drifted from the source design in typography and density. Re-prompting with explicit constraints (font family, row height) would be the fix.
+
+## Decisions carried into Module 2
+- **Chosen design:** the light variant, [UI-stitch.jpg](UI-stitch.jpg). The dark terminal variant ([UI-stitch-3.jpg](UI-stitch-3.jpg)) is reference only, not a build target. `UI-stitch-2.jpg` duplicates the first.
+- **Mock data:** [mock-data.json](mock-data.json), 20 rows. `cdsSpreadBps` is the 5Y reference CDS spread; `tenor` is the maturity of the exposure with that counterparty, not a CDS tenor. `cvaCharge` is a static mock value (derived once from spread x exposure x tenor, not computed at runtime). `null` spread/CVA on Trafigura and two stale timestamps (Toyota, Siemens) are deliberate edge cases for Module 3.
+- **LEIs:** seven copied from the mockups, the rest random 20-character codes. Not real LEIs.
