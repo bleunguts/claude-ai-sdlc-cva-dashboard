@@ -3,9 +3,8 @@
 ## Artefacts
 | File | What |
 |---|---|
-| [UI-stitch.jpg](UI-stitch.jpg) | Stitch "Counterparty CVA & CDS Monitor" (compact, ~25 rows visible) |
-| [UI-stitch-2.jpg](UI-stitch-2.jpg) | Stitch light variant, near-identical to the first (same layout, slightly different scroll position) |
-| [UI-stitch-3.jpg](UI-stitch-3.jpg) | Stitch dark "CVA MONITOR / LIVE TERMINAL" variant: top-bar filters, keyboard hints, breach flags, totals row |
+| [UI-stitch.jpg](UI-stitch.jpg) | Stitch  "Counterparty CVA & CDS Monitor" light variant (same layout, slightly different scroll position)  (compact, ~25 rows visible) |
+| [UI-stitch-professional-dark-theme.jpg](UI-stitch-professional-dark-theme.jpg) | Stitch dark "CVA MONITOR / LIVE TERMINAL" variant: top-bar filters, keyboard hints, breach flags, totals row |
 | [UI-figma.jpg](UI-figma.jpg) | Same design rebuilt by Figma Make as a React app (8 rows, paginated) |
 | AI Studio app | https://aistudio.google.com/apps/003b496e-ee72-4771-84ad-ae3273f9fa20 (source exportable to zip/GitHub; not committed, `app/` is reserved for the Replit build) |
 | Figma Make | https://www.figma.com/make/FdhnuWTMnD3NvAiPMbQzQ8/Build-React-App |
