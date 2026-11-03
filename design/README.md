@@ -15,7 +15,7 @@
 | 1 | Starter prompt (see ROADMAP.md) | CVA Charge Monitor; very detailed, extra nav and chrome | Baseline. Detail looked impressive but exceeded scope. |
 | 2 | Stitch suggestion: counterparty deep-dive | BNP Paribas SA profile screen | Explored the suggestion feature. Out of scope for the one-table MVP, so not carried forward. |
 | 3 | Remove all unused navigation items except Dashboard. Remove KPI cards. Keep only these columns: counterparty, CDS spread, tenor, CVA charge, timestamp. Reduce row height to 26px, right-align and use monospace for numeric columns, remove card containers and shadows, use thin 1px gridlines. | Counterparty CVA & CDS Monitor (UI-stitch.jpg) | Less clutter, more MVP: cut to the table and filters. |
-| 4 | Redesign professional dark financial terminal theme (e.g. Bloomberg / institutional trading desk dark aesthetic matching Neon Tokyo / terminal dark mode with deep dark background #0d0f17 or #111420, crisp borders, high contrast accents). | Dark terminal variant (UI-stitch-3.jpg) | Top-bar filters and a denser, Bloomberg-style look. |
+| 4 | Redesign professional dark financial terminal theme (e.g. Bloomberg / institutional trading desk dark aesthetic matching Neon Tokyo / terminal dark mode with deep dark background #0d0f17 or #111420, crisp borders, high contrast accents). | Dark terminal variant (UI-stitch-professional-dark-theme.jpg) | Top-bar filters and a denser, Bloomberg-style look. |
 
 ## Critique (against the roadmap checklist)
 - **Density:** Stitch result is genuinely terminal-like: ~25 rows visible, monospace right-aligned numerics, flat gridlines, Compact/Standard toggle, red only for high spread / CVA.
@@ -36,6 +36,6 @@
 - Figma Make drifted from the source design in typography and density. Re-prompting with explicit constraints (font family, row height) would be the fix.
 
 ## Decisions carried into Module 2
-- **Chosen design:** the light variant, [UI-stitch.jpg](UI-stitch.jpg). The dark terminal variant ([UI-stitch-3.jpg](UI-stitch-3.jpg)) is reference only, not a build target. `UI-stitch-2.jpg` duplicates the first.
+- **Chosen design:** the light variant, [UI-stitch.jpg](UI-stitch.jpg). The dark terminal variant ([UI-stitch-professional-dark-theme.jpg.jpg](UI-stitch-professional-dark-theme.jpg.jpg)) is reference only, not a build target. 
 - **Mock data:** [mock-data.json](mock-data.json), 20 rows. `cdsSpreadBps` is the 5Y reference CDS spread; `tenor` is the maturity of the exposure with that counterparty, not a CDS tenor. `cvaCharge` is a static mock value (derived once from spread x exposure x tenor, not computed at runtime). `null` spread/CVA on Trafigura and two stale timestamps (Toyota, Siemens) are deliberate edge cases for Module 3.
 - **LEIs:** seven copied from the mockups, the rest random 20-character codes. Not real LEIs.
