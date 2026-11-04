@@ -30,3 +30,23 @@ Not like-for-like: AI Studio was design-to-code (the full Stitch export), Replit
 | Effort | One prompt, no follow-ups: "Build me an app with screens that look like this. You can hotlink images from the HTML", with the Stitch HTML export attached; fastest to pixels | 3 prompts; one was a wrong turn (dark theme) |
 
 **Takeaway:** use the design-export tool when you want pixels fast; use the agent when you want a controlled structure and the dataset you chose. Neither removed the cleanup: AI Studio's is deleting scope, Replit's is deleting scaffold.
+
+---
+
+# Module 3: Component testing — Storybook
+
+Hand-driven tutorial module: the stories were written by hand, with Claude Code as reviewer. Issue #13. Output: `CvaGrid.stories.tsx` plus screenshots [empty](../design/storybook-empty.jpg), [populated](../design/storybook-populated.jpg), [error](../design/storybook-error.jpg).
+
+## Iteration log
+| # | Step | Result | What changed and why |
+|---|---|---|---|
+| 1 | `npx storybook@latest init` | Working `.storybook/`, but it also added the Vitest addon, Playwright browser provider, Chromatic and MCP addons, `latest`-pinned deps, and rewrote the whole of `vite.config.ts` (formatting plus a `test` block). | Scope creep from the generator. Reverted `vite.config.ts` and uninstalled the extras; only `storybook` and `@storybook/react-vite` remain. Playwright belongs to Module 4. |
+| 2 | First stories draft | `Meta` used as a bare type expression; imported from `@storybook/react`. | Fixed to a typed `meta` default export and `@storybook/react-vite` (the package actually installed; `@storybook/react` only resolved transitively). |
+| 3 | Populated story | Passed the 20-row `mock-data.json` cast to `CvaRow[]`. | Uses the same data as the app, so the null Trafigura row and stale timestamps are exercised. |
+| 4 | Error story | First draft had the decorator inverted (`<Story>` wrapping `ErrorBoundary`) and a `...` placeholder. Fixed to `<ErrorBoundary><Story /></ErrorBoundary>` with `rows: null`. | The fallback now renders ("rows is not iterable"). |
+
+## Retro
+- **Error state without changing the component:** `CvaGrid` is presentational and has no error prop. Wrapping it in the existing `ErrorBoundary` and feeding it rows that crash `[...rows]` tests real behaviour and keeps the component untouched. Adding an `error` prop would have grown the component for the sake of a story.
+- **Generators over-deliver:** `storybook init` installs a test stack by default. Reviewing the diff, not just checking that it runs, caught it. The same lesson as Module 2: the tool's defaults are not the scope.
+- **A green build is not a rendered story:** typecheck and `build-storybook` passed with a wrongly nested decorator in play; only opening the story shows the fallback. Screenshots are the evidence.
+- **Known rough edge:** the default fallback uses `min-h-screen`, so the error story is taller than the grid it replaces. Left as is.

@@ -9,7 +9,9 @@
     "build": "vite build --config vite.config.ts",
     "serve": "vite preview --config vite.config.ts --host 0.0.0.0",
     "preview": "vite preview --config vite.config.ts --host 127.0.0.1 --port 4173",
-    "typecheck": "tsc -p tsconfig.json --noEmit"
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "engines": {
     "node": ">=22.12.0"
@@ -76,6 +78,8 @@
     "vaul": "^1.1.2",
     "vite": "^7.3.2",
     "wouter": "^3.3.5",
-    "zod": "^3.25.76"
+    "zod": "^3.25.76",
+    "storybook": "^10.6.5",
+    "@storybook/react-vite": "^10.6.5"        
   }
 }
