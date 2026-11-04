@@ -55,6 +55,7 @@ function App() {
                 type="search"
                 placeholder="Search counterparty name"
                 value={counterpartySearch}
+                data-active={counterpartySearch.trim() ? 'true' : undefined}
                 onChange={(event) => setCounterpartySearch(event.target.value)}
                 data-testid="input-counterparty-search"
               />
@@ -62,17 +63,17 @@ function App() {
           </label>
           <label className="filter-field">
             <span className="filter-label">Risk bucket</span>
-            <select className="control" value={bucket} onChange={(event) => setBucket(event.target.value)} data-testid="select-risk-bucket">
+            <select className="control" value={bucket} data-active={bucket !== 'All' ? 'true' : undefined} onChange={(event) => setBucket(event.target.value)} data-testid="select-risk-bucket">
               {buckets.map((option) => <option key={option} value={option}>{option}</option>)}
             </select>
           </label>
           <label className="filter-field">
             <span className="filter-label">Timestamp from</span>
-            <input className="control date-control" type="date" value={dateFrom} onChange={(event) => setDateFrom(event.target.value)} data-testid="input-date-from" />
+            <input className="control date-control" type="date" value={dateFrom} data-active={dateFrom ? 'true' : undefined} onChange={(event) => setDateFrom(event.target.value)} data-testid="input-date-from" />
           </label>
           <label className="filter-field">
             <span className="filter-label">Timestamp to</span>
-            <input className="control date-control" type="date" value={dateTo} onChange={(event) => setDateTo(event.target.value)} data-testid="input-date-to" />
+            <input className="control date-control" type="date" value={dateTo} data-active={dateTo ? 'true' : undefined} onChange={(event) => setDateTo(event.target.value)} data-testid="input-date-to" />
           </label>
         </section>
 

@@ -123,9 +123,9 @@ export function CvaGrid({ rows }: CvaGridProps) {
                 {row.counterparty}<span className="lei">{row.lei}</span>
               </td>
               <td className="bucket-cell">{row.bucket}</td>
-              <td className="numeric spread">{row.cdsSpreadBps === null ? '—' : row.cdsSpreadBps.toFixed(1)}</td>
+              <td className={`numeric spread${row.cdsSpreadBps !== null && row.cdsSpreadBps > 150 ? ' threshold-alert' : ''}`}>{row.cdsSpreadBps === null ? '—' : row.cdsSpreadBps.toFixed(1)}</td>
               <td className="numeric">{row.tenor}</td>
-              <td className="numeric charge">{row.cvaCharge === null ? '—' : money.format(row.cvaCharge)}</td>
+              <td className={`numeric charge${row.cvaCharge !== null && row.cvaCharge > 4_000_000 ? ' threshold-alert' : ''}`}>{row.cvaCharge === null ? '—' : money.format(row.cvaCharge)}</td>
               <td className="numeric timestamp">{formatTimestamp(row.timestamp)}</td>
             </tr>
           ))}

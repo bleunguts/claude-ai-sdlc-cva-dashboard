@@ -2,7 +2,7 @@
 
 A six-module walkthrough of an AI-assisted SDLC, one tool per stage, run against a single small CVA monitoring dashboard. Each module's output is a concrete, interview-ready artefact — not just familiarity with a tool, but a demonstrated reason for picking it at that stage.
 
-**Status:** Module 1 (Stitch) done. Artefacts in `design/`. Module 2 (Replit Agent) next.
+**Status:** Modules 1 (Stitch) and 2 (Replit Agent) done. Artefacts in `design/` and `app/`. Module 3 (Storybook) next.
 
 ## Domain choice
 
@@ -17,7 +17,7 @@ CVA, not FX, IR swaps, equity derivs or general credit. Reasoning:
 | # | Module | Tool | Output | Status |
 |---|---|---|---|---|
 | 1 | Design | Stitch (vs Figma AI / v0) | 2–3 dashboard mockup variants (dense data table + filter panel) + one refined version, with a tool comparison note | Done |
-| 2 | Build | Replit Agent | Working React repo, scaffolded from the Stitch design + mock CVA data | In progress |
+| 2 | Build | Replit Agent | Working React repo, scaffolded from the Stitch design + mock CVA data | Done |
 | 3 | Component testing | Storybook | Grid component isolated, 2–3 stories (empty / populated / error) | Planned |
 | 4 | E2E testing | Playwright | One passing test: load dashboard, apply filter, assert row(s) | Planned |
 | 5 | Review | CodeRabbit | PR with a real AI review thread on an intentionally rough edge | Planned |
