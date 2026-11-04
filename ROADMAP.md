@@ -2,7 +2,7 @@
 
 A six-module walkthrough of an AI-assisted SDLC, one tool per stage, run against a single small CVA monitoring dashboard. Each module's output is a concrete, interview-ready artefact — not just familiarity with a tool, but a demonstrated reason for picking it at that stage.
 
-**Status:** Module 1 (Stitch) done. Artefacts in `design/`. Module 2 (Replit Agent) next.
+**Status:** Modules 1 (Stitch) and 2 (Replit Agent) done. Artefacts in `design/` and `app/`. Module 3 (Storybook) next.
 
 ## Domain choice
 
@@ -17,7 +17,7 @@ CVA, not FX, IR swaps, equity derivs or general credit. Reasoning:
 | # | Module | Tool | Output | Status |
 |---|---|---|---|---|
 | 1 | Design | Stitch (vs Figma AI / v0) | 2–3 dashboard mockup variants (dense data table + filter panel) + one refined version, with a tool comparison note | Done |
-| 2 | Build | Replit Agent | Working React repo, scaffolded from the Stitch design + mock CVA data | Planned |
+| 2 | Build | Replit Agent | Working React repo, scaffolded from the Stitch design + mock CVA data | Done |
 | 3 | Component testing | Storybook | Grid component isolated, 2–3 stories (empty / populated / error) | Planned |
 | 4 | E2E testing | Playwright | One passing test: load dashboard, apply filter, assert row(s) | Planned |
 | 5 | Review | CodeRabbit | PR with a real AI review thread on an intentionally rough edge | Planned |
@@ -77,6 +77,6 @@ One module per weekend session. Each module: generate/build with the starter pro
 
 **Done when:** 2–3 variants plus one refined mockup exist, exported to `design/`, with a prompt log, a one-line note per iteration on what changed and why, and a short Stitch-vs-alternative comparison note.
 
-## Module 2 design question
+## Module 2 design question (resolved)
 
-Replit Agent needs both the Module 1 design and a concrete data shape to scaffold against. Before starting: pin down the mock CVA dataset (20 rows — which counterparties, what tenor buckets, plausible CDS spread ranges, timestamp format) so the prompt to Replit Agent is unambiguous rather than left to its defaults.
+Replit Agent needs both the Module 1 design and a concrete data shape to scaffold against. The mock CVA dataset is pinned in [design/mock-data.json](design/mock-data.json) (20 rows, 4 buckets, 1Y–10Y tenors, ISO-8601 UTC timestamps, deliberate null and stale-timestamp edge cases), and the chosen design is `design/UI-stitch.jpg`. See "Decisions carried into Module 2" in [design/README.md](design/README.md).
