@@ -25,7 +25,7 @@ GitHub issue -> branch -> implementation -> PR. Never commit directly to `main`.
 design/        -> Stitch output (mockup export, prompt log)
 app/           -> React app scaffolded by Replit Agent (mock data: counterparty, CDS spread, tenor, CVA charge, timestamp)
 app/.storybook -> Storybook stories for the grid component (empty / populated / error states)
-e2e/           -> Playwright test(s)
+app/artifacts/cva-monitor/e2e/ -> Playwright test(s) (config: playwright.config.ts alongside)
 docs/          -> Notion AI writeup, exported
 ```
 
@@ -43,3 +43,4 @@ Module-by-module plan, prompts, and status live in [ROADMAP.md](ROADMAP.md), the
 - Session 1: Module 1 (Stitch). Generated the CVA monitor and a deep-dive screen; exported to AI Studio (clean code export) and Figma Make (clunky export, drifted on typography/density). Artefacts and comparison in design/README.md.
 - Session 2: Module 2 (Replit Agent). Built the one-page CVA monitor in `app/` (`artifacts/cva-monitor`) from the light Stitch design and `design/mock-data.json`; iterated dark then back to light. Replit ignored "no backend" at the scaffold level (unused api-server/Postgres left in place). Prompt log and retro in app/PROMPTS.md.
 - Session 3: Module 3 (Storybook). Isolated `CvaGrid` with Empty / Populated / Error stories (`src/CvaGrid.stories.tsx`, screenshots in `design/storybook-*.jpg`). Error state uses the existing `ErrorBoundary` as a decorator rather than a new prop. `storybook init` over-installed a Vitest/Playwright stack; pruned back to the two core packages. Retro in app/PROMPTS.md.
+- Session 4: Module 4 (Playwright). One e2e test in `app/artifacts/cva-monitor/e2e/cva-filter.spec.ts`: load, filter on "group", assert 4 rows present and BNP absent. Written by hand with Claude coaching; my miscounted expectation (Citigroup) was caught by the test, and a deliberate filter break confirmed it can fail. Retro in app/PROMPTS.md.
