@@ -50,3 +50,33 @@ Hand-driven tutorial module: the stories were written by hand, with Claude Code 
 - **Generators over-deliver:** `storybook init` installs a test stack by default. Reviewing the diff, not just checking that it runs, caught it. The same lesson as Module 2: the tool's defaults are not the scope.
 - **A green build is not a rendered story:** typecheck and `build-storybook` passed with a wrongly nested decorator in play; only opening the story shows the fallback. Screenshots are the evidence.
 - **Known rough edge:** the default fallback uses `min-h-screen`, so the error story is taller than the grid it replaces. Left as is.
+
+---
+
+# Module 4: E2E testing — Playwright
+
+Hand-driven tutorial module: the test was typed step by step by hand, with Claude Code coaching and reviewing. Issue #15. Output: `artifacts/cva-monitor/e2e/cva-filter.spec.ts`.
+
+## Iteration log
+| # | Step | Result | What changed and why |
+|---|---|---|---|
+| 1 | Config + first assertion | `playwright.config.ts` with `webServer` (`npm run dev:windows`, port 5173); `20 of 20` asserted. Passed. | Initially scaffolded at the repo root; moved into `artifacts/cva-monitor` so the dependency sits with the app, not a stray root `package.json`. |
+| 2 | Filter on `group`, expect `3 of 20` | **Failed:** received `4 of 20`. | My hand count missed Citigroup ("Citigroup" contains "group"). The test was right and the expectation was wrong; changed to `4 of 20`. |
+| 3 | Assert 4 rows present, BNP Paribas absent (`toHaveCount(0)`) | Passed. | Checking only the present rows would pass if the filter did nothing; the absence check closes that. |
+| 4 | Negative check: forced `matchesCounterparty = true` in `App.tsx` | Failed as intended: `Expected "4 of 20"`, `Received "20 of 20 counterpartiesFiltered CVA total $58,980,000"`. Reverted; green again. | Proves the test can fail. |
+
+## Evidence
+Final run (Chromium, headless, app started by `webServer`):
+```
+ok 1 [chromium] › e2e\cva-filter.spec.ts:3:1 › filtering by counterparty name narrows the table (949ms)
+1 passed (5.9s)
+```
+Run with `npm run test:e2e` from `app/artifacts/cva-monitor`.
+
+## Retro
+- **Expected values from the data, not from memory:** the one failure in the build was a wrong expectation, not a bug. The test surfaced it in seconds; a hand-counted "3" would otherwise have gone into the repo as folklore. Derive expectations from `mock-data.json`.
+- **Assert absence as well as presence:** `toHaveCount(0)` on a non-matching row is what makes this a filter test rather than a render test.
+- **A test you have not seen fail is unproven:** the deliberate break was cheap (one line, one run) and is the real evidence.
+- **Stable selectors paid off:** Module 2's `data-testid` attributes meant no app changes, and the Replit agent's habit of adding them was worth more than anything it did in the scaffold.
+- **Web-first assertions:** no sleeps; `expect(...).toContainText` retries until the React state settles.
+- **Known gaps (by design):** one test, one browser, no CI. Scope stays small.

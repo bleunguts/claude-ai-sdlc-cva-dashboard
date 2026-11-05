@@ -2,7 +2,7 @@
 
 A six-module walkthrough of an AI-assisted SDLC, one tool per stage, run against a single small CVA monitoring dashboard. Each module's output is a concrete, interview-ready artefact — not just familiarity with a tool, but a demonstrated reason for picking it at that stage.
 
-**Status:** Modules 1 (Stitch), 2 (Replit Agent) and 3 (Storybook) done. Artefacts in `design/`, `app/` and `app/artifacts/cva-monitor/src/CvaGrid.stories.tsx`. Module 4 (Playwright) next. Issues raised in advance: #15 (M4), #16 (M5), #17 (M6).
+**Status:** Modules 1 (Stitch), 2 (Replit Agent), 3 (Storybook) and 4 (Playwright) done. Artefacts in `design/`, `app/` and `app/artifacts/cva-monitor/src/CvaGrid.stories.tsx`. Module 5 (CodeRabbit) next. Issues raised in advance: #15 (M4), #16 (M5), #17 (M6).
 
 ## Domain choice
 
@@ -19,7 +19,7 @@ CVA, not FX, IR swaps, equity derivs or general credit. Reasoning:
 | 1 | Design | Stitch (vs Figma AI / v0) | 2–3 dashboard mockup variants (dense data table + filter panel) + one refined version, with a tool comparison note | Done |
 | 2 | Build | Replit Agent | Working React repo, scaffolded from the Stitch design + mock CVA data | Done |
 | 3 | Component testing | Storybook | Grid component isolated, 2–3 stories (empty / populated / error) | Done |
-| 4 | E2E testing | Playwright | One passing test: load dashboard, apply filter, assert row(s) | Planned |
+| 4 | E2E testing | Playwright | One passing test: load dashboard, apply filter, assert row(s) | Done |
 | 5 | Review | CodeRabbit | PR with a real AI review thread on an intentionally rough edge | Planned |
 | 6 | Docs | Notion AI | One-pager: problem, approach, stack, what you'd change next time | Planned |
 
@@ -42,7 +42,7 @@ One module per weekend session. Each module: generate/build with the starter pro
 │   └─ .storybook/  stories (app/artifacts/cva-monitor/.storybook)                │
 │       │                                                                          │
 │       ▼                                                                          │
-│  e2e/           Playwright test: load → filter → assert                         │
+│  app/…/cva-monitor/e2e/  Playwright test: load → filter → assert                │
 │       │                                                                          │
 │       ▼                                                                          │
 │  PR → CodeRabbit review thread                                                  │
@@ -90,11 +90,11 @@ Issue: #13. **Learn:** isolate a UI component and exercise its states without th
 Issue: #15. **Learn:** drive the real app in a browser and assert on user-visible behaviour, using stable `data-testid` selectors and `webServer` config.
 
 **Starter prompt:**
-> "Add Playwright under `e2e/`. Write one test against the cva-monitor app: load the dashboard, assert the 20-row table, type a counterparty name into the search box, assert only the matching row(s) remain and the status summary updates. Use the existing `data-testid` selectors; start the app via `webServer`. No app code changes."
+> "Add Playwright under `app/artifacts/cva-monitor/e2e/`. Write one test against the cva-monitor app: load the dashboard, assert the 20-row table, type a counterparty name into the search box, assert only the matching row(s) remain and the status summary updates. Use the existing `data-testid` selectors; start the app via `webServer`. No app code changes."
 
 **Critique checklist:** web-first assertions (no sleeps); asserts both present and absent rows; expected data consistent with `design/mock-data.json`; reproducible startup; test fails when the filter is broken.
 
-**Done when:** one Playwright test in `e2e/` passes from a clean start, with run evidence committed and a prompt log and retro in `app/PROMPTS.md`.
+**Done when:** one Playwright test in `app/artifacts/cva-monitor/e2e/` passes from a clean start, with run evidence committed and a prompt log and retro in `app/PROMPTS.md`.
 
 ## Module 5: Review (CodeRabbit)
 
