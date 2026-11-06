@@ -105,3 +105,25 @@ Parked rather than skipped, and Module 6 proceeds. PR #21 stays open with the pl
 - **Third-party installs fail silently:** a bot that does not respond gives no error. The useful debugging order was to rule out our side first (PR state, repo visibility, config), then reinstall, then escalate.
 - **Check the whole pipeline early:** the tool dependency (an installed, active app) was not verified until the PR was open. Verify the app responds on a throwaway PR before planting the edge.
 - **Visibility limits:** an installer cannot see webhook deliveries, so escalation to the vendor is the only route once the checks above are exhausted.
+
+---
+
+# Module 6: Docs — Notion AI
+
+Issue #17. Output: [`docs/cva-dashboard-onepager.md`](../docs/cva-dashboard-onepager.md). Inputs were compiled from the repo into [`docs/notion-inputs.md`](../docs/notion-inputs.md) and pasted into a Notion page; the one-pager was generated on a second page.
+
+## Prompt log
+| # | Prompt | Result | What changed and why |
+|---|---|---|---|
+| 1 | Starter prompt: "From these notes, write a one-page summary: the problem (monitoring CVA by counterparty), the approach (one AI tool per SDLC stage), the stack, and what I'd change next time. Factual and concise. CDS spreads are mock inputs; don't claim a pricing engine." | Accurate on figures and on Module 5 (blocked, no results claimed). But: the table gave results only, with no "why this tool"; it said the Replit scaffold "needed pruning" (false: it was left in place on purpose); CVA depth was one clause, upskilling not stated; only a repo link. | Baseline. Fact-checked line by line against the repo. |
+| 2 | Refinement: keep structure and one page; replace the "Result" column with "Why this tool" and "What went wrong or taught me"; correct the Build row (scaffold ignored "no backend", left in place, not pruned); add one sentence each on CVA depth and what the workflow taught me; CodeRabbit "installed, never responded, cause unconfirmed"; use only facts from my notes. | Per-stage reasoning present and Build row fixed. New problems: a lessons paragraph duplicated the "next time" bullets, and artefact links were missing. | Targeted prompt fixed what the checklist failed and nothing else. |
+| 3 | By hand in Notion: shortened the lessons paragraph, added artefact links, added AI Studio to the Design row, set Docs to Done. | Introduced one error: "Figma Make/AI Studio drifted". | Hand edits are not exempt from fact-checking. |
+| 4 | By hand in the repo (after fact-check): "Figma Make drifted; AI Studio exported cleanly"; title, wording and link-list fixes. | Final. | |
+
+## Retro
+- **Why #2 worked:** it named the columns to change and the one fact to correct, and ended "use only facts from my notes". Same pattern as Module 2 prompt 3: say what to change and what not to touch.
+- **Notion AI got wrong or padded:** claimed the scaffold was pruned (the notes said the opposite, in a different paragraph); repeated lessons in two places; dropped per-stage reasoning until asked. It summarised well but did not cross-check its own claims.
+- **Fact-check by diffing against the source, not by reading for tone:** the AI Studio error read fluently and only surfaced against `design/README.md`.
+- **Inputs as the lever:** the notes carried the honesty (Module 5 blocked, "no review results exist, so none may be claimed"). The output stayed honest because the input was.
+- **Export:** Markdown survived (tables included). The PDF exports were removed because they contained the uncorrected text; re-export from Notion after the fix if a PDF is wanted. Two duplicate exports of the inputs page were removed as redundant with `notion-inputs.md`.
+- **Confidentiality:** the one-pager keeps to generic domain depth; no detail from prior roles.
