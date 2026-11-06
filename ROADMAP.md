@@ -2,7 +2,7 @@
 
 A six-module walkthrough of an AI-assisted SDLC, one tool per stage, run against a single small CVA monitoring dashboard. Each module's output is a concrete, interview-ready artefact — not just familiarity with a tool, but a demonstrated reason for picking it at that stage.
 
-**Status:** Modules 1 (Stitch), 2 (Replit Agent), 3 (Storybook) and 4 (Playwright) done. Artefacts in `design/`, `app/` and `app/artifacts/cva-monitor/src/CvaGrid.stories.tsx`. Module 5 (CodeRabbit) is **blocked**: PR #21 is open with the planted edge, but CodeRabbit never reviewed it (see `app/PROMPTS.md`); parked while Module 6 proceeds. Issues raised in advance: #15 (M4), #16 (M5), #17 (M6).
+**Status:** Modules 1 (Stitch), 2 (Replit Agent), 3 (Storybook), 4 (Playwright) and 6 (Notion AI, `docs/cva-dashboard-onepager.md`) done. Artefacts in `design/`, `app/` and `app/artifacts/cva-monitor/src/CvaGrid.stories.tsx`. Module 5 (CodeRabbit) is **blocked**: PR #21 is open with the planted edge, but CodeRabbit never reviewed it (see `app/PROMPTS.md`); parked, Module 6 completed without it. Issues raised in advance: #15 (M4), #16 (M5), #17 (M6).
 
 ## Domain choice
 
@@ -21,7 +21,7 @@ CVA, not FX, IR swaps, equity derivs or general credit. Reasoning:
 | 3 | Component testing | Storybook | Grid component isolated, 2–3 stories (empty / populated / error) | Done |
 | 4 | E2E testing | Playwright | One passing test: load dashboard, apply filter, assert row(s) | Done |
 | 5 | Review | CodeRabbit | PR with a real AI review thread on an intentionally rough edge | Blocked: PR #21 open, CodeRabbit silent |
-| 6 | Docs | Notion AI | One-pager: problem, approach, stack, what you'd change next time | Planned |
+| 6 | Docs | Notion AI | One-pager: problem, approach, stack, what you'd change next time | Done |
 
 ## How it is built
 
