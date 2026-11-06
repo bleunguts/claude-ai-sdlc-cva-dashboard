@@ -80,3 +80,28 @@ Run with `npm run test:e2e` from `app/artifacts/cva-monitor`.
 - **Stable selectors paid off:** Module 2's `data-testid` attributes meant no app changes, and the Replit agent's habit of adding them was worth more than anything it did in the scaffold.
 - **Web-first assertions:** no sleeps; `expect(...).toContainText` retries until the React state settles.
 - **Known gaps (by design):** one test, one browser, no CI. Scope stays small.
+
+---
+
+# Module 5: Review — CodeRabbit (blocked)
+
+Issue #16, PR #21 (branch `module-5-coderabbit`, kept open and untouched). **Status: blocked. No review was produced, so the module's output artefact does not exist yet.**
+
+## What was tried
+| # | Step | Result |
+|---|---|---|
+| 1 | Installed the CodeRabbit GitHub app, selected this repo | Listed as installed; repo present in the CodeRabbit dashboard |
+| 2 | Opened PR #21 (non-draft, base `main`, public repo) | No bot comment, review or status check |
+| 3 | Commented `@coderabbitai review` | No response |
+| 4 | Closed and reopened the PR | No response |
+| 5 | Uninstalled and reinstalled the app | No response |
+
+Ruled out: private-repo limits (repo is public), draft PR, a `.coderabbit.yaml` disabling reviews (none exists), repo not selected for the app. GitHub's "Recent Deliveries" webhook log is owner-only, so delivery could not be inspected. Remaining cause is on the CodeRabbit side; support contact pending.
+
+## Decision
+Parked rather than skipped, and Module 6 proceeds. PR #21 stays open with the planted edge (unmemoised `filteredRows` in `App.tsx`) so the review can still be captured if CodeRabbit starts responding. The edge and the prediction are recorded in the PR #21 branch's PROMPTS.md section.
+
+## Retro
+- **Third-party installs fail silently:** a bot that does not respond gives no error. The useful debugging order was to rule out our side first (PR state, repo visibility, config), then reinstall, then escalate.
+- **Check the whole pipeline early:** the tool dependency (an installed, active app) was not verified until the PR was open. Verify the app responds on a throwaway PR before planting the edge.
+- **Visibility limits:** an installer cannot see webhook deliveries, so escalation to the vendor is the only route once the checks above are exhausted.
