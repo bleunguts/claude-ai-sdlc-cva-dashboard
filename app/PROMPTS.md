@@ -80,3 +80,16 @@ Run with `npm run test:e2e` from `app/artifacts/cva-monitor`.
 - **Stable selectors paid off:** Module 2's `data-testid` attributes meant no app changes, and the Replit agent's habit of adding them was worth more than anything it did in the scaffold.
 - **Web-first assertions:** no sleeps; `expect(...).toContainText` retries until the React state settles.
 - **Known gaps (by design):** one test, one browser, no CI. Scope stays small.
+
+---
+
+# Module 5: Review — CodeRabbit
+
+Issue #16. Branch `module-5-coderabbit`. Output: the PR thread.
+
+## Planted rough edge (recorded before opening the PR)
+- **Where:** `src/App.tsx`, `filteredRows`.
+- **What:** removed the `useMemo` around the counterparty/bucket/date filter, leaving a plain `rows.filter(...)` in the render body.
+- **Why it is a real issue:** `filteredRows` is a new array every render, so it also defeats the `useMemo` in `CvaGrid` that sorts `rows` (its dependency changes identity on every render). Every keystroke re-filters and re-sorts, and any unrelated re-render does too. Works correctly at 20 rows; would not scale.
+- **Starter prompt used:** see issue #16 / ROADMAP.md Module 5.
+- **Prediction to judge CodeRabbit against:** it should flag the missing memoisation and ideally the knock-on to the grid's sort.

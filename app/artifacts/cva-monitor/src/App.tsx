@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 import { Search } from 'lucide-react';
 import mockRows from './data/mock-data.json';
 import { CvaGrid, type CvaRow } from './CvaGrid';
@@ -17,17 +17,15 @@ function App() {
   const [dateFrom, setDateFrom] = useState('');
   const [dateTo, setDateTo] = useState('');
 
-  const filteredRows = useMemo(() => {
-    const query = counterpartySearch.trim().toLocaleLowerCase();
-    return rows.filter((row) => {
-      const rowDate = row.timestamp.slice(0, 10);
-      const matchesCounterparty = !query || row.counterparty.toLocaleLowerCase().includes(query);
-      const matchesBucket = bucket === 'All' || row.bucket === bucket;
-      const matchesFrom = !dateFrom || rowDate >= dateFrom;
-      const matchesTo = !dateTo || rowDate <= dateTo;
-      return matchesCounterparty && matchesBucket && matchesFrom && matchesTo;
-    });
-  }, [bucket, counterpartySearch, dateFrom, dateTo]);
+  const query = counterpartySearch.trim().toLocaleLowerCase();
+  const filteredRows = rows.filter((row) => {
+    const rowDate = row.timestamp.slice(0, 10);
+    const matchesCounterparty = !query || row.counterparty.toLocaleLowerCase().includes(query);
+    const matchesBucket = bucket === 'All' || row.bucket === bucket;
+    const matchesFrom = !dateFrom || rowDate >= dateFrom;
+    const matchesTo = !dateTo || rowDate <= dateTo;
+    return matchesCounterparty && matchesBucket && matchesFrom && matchesTo;
+  });
 
   const filteredTotal = filteredRows.reduce((total, row) => total + (row.cvaCharge ?? 0), 0);
 
