@@ -17,6 +17,8 @@ CVA, not FX, IR swaps, equity derivs or general credit. Reasoning:
 | # | Module | Tool | Output | Status |
 |---|---|---|---|---|
 | 1 | Design | Stitch (vs Figma AI / v0) | 2–3 dashboard mockup variants (dense data table + filter panel) + one refined version, with a tool comparison note | Done |
+| 1b | Design | Stitch (design system, multi-screen, export) | Design system file, three screens (monitor, deep-dive, credit spread dashboard), prototype click-through, one screen built from a manual export | Planned |
+| 1c | Design hand-off | Stitch MCP + Claude Code | The same screen pulled via MCP and compared with the 1b manual export | Planned |
 | 2 | Build | Replit Agent | Working React repo, scaffolded from the Stitch design + mock CVA data | Done |
 | 3 | Component testing | Storybook | Grid component isolated, 2–3 stories (empty / populated / error) | Done |
 | 4 | E2E testing | Playwright | One passing test: load dashboard, apply filter, assert row(s) | Done |
@@ -76,6 +78,23 @@ One module per weekend session. Each module: generate/build with the starter pro
 **Tool comparison:** run the same starter prompt in a second tool (Figma AI or v0, ~20 min timebox) and note what each does better or worse (fidelity, density control, editability, export, speed).
 
 **Done when:** 2–3 variants plus one refined mockup exist, exported to `design/`, with a prompt log, a one-line note per iteration on what changed and why, and a short Stitch-vs-alternative comparison note.
+
+## Module 1b: Design system and multi-screen flow (Stitch)
+
+Issue: #24. **Learn:** Stitch beyond one screen: a design system file (DESIGN.md), consistency across screens, instant prototype, element-level edits, and a manual-export hand-off to Claude Code. Stitch features are from secondary coverage; verify hands-on.
+
+**Screens:** CVA monitor (existing), counterparty deep-dive (Module 1 screen, refined), credit spread dashboard (new: 5Y spread, 1d/5d change, rating, sector, proxy flag, term structure, link to CVA row; needs `design/mock-credit.json`). The credit screen is the cut line.
+
+**Starter prompt (design system):**
+> "Create a design system from this screen: colours, type scale, 26px row density, monospace right-aligned numerics, red only for breaches. Keep terminal density, not consumer SaaS."
+
+**Done when:** DESIGN.md, three screens, prototype evidence and one component built from the manual export are committed under `design/` with prompt log and retro.
+
+## Module 1c: Design hand-off via MCP (Stitch + Claude Code)
+
+Issue: #25. Depends on 1b. **Learn:** pull the same credit dashboard into Claude Code through the Stitch MCP server and compare it with 1b's manual export (fidelity, tokens, manual steps, behaviour after a design change, setup time, failure modes, reproducibility). Keys stay out of the repo. If setup fails within the session, logging why is a valid result.
+
+**Done when:** Route B attempted on the same screen with the comparison table completed (or a documented reason it could not be set up), with prompt log and retro.
 
 ## Module 2 design question (resolved)
 
