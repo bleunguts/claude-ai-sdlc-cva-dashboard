@@ -110,3 +110,24 @@ Breach Threshold Line: Red dashed #DC2626 at 200 bps.
 
 Iteration 2
 v2.1: hand-edited tenors to match mock data and fixed the PROXY label. Cheaper to hand-edit than to re-prompt.
+
+Prompt:
+Using the attached design system (DESIGN.md), redesign the BNP Paribas SA counterparty deep-dive screen. Same terminal density as the CVA monitor: 26px rows, monospace right-aligned numerics, breach red only for CDS above 200 bps or CVA above $5M. No left nav dock, no telemetry ribbon, no KPI cards. Show: counterparty header (name, LEI, bucket, rating), a small table of its trades or exposure, and CDS spread plus CVA charge as plain numbers.
+
+Result:
+Over-scoped. I asked for “a small table of trades or exposure”. You got two full tables, a chart, a header metric strip (Net CVA, Gross Notional, Net MTM, CSA), a Scenario Shock button, and Export Exposure CSV. That is the “more is more” problem again.
+Engine telemetry came back.
+There is a footer line “Simulation engine: 50,000 Hull-White 2F...”, plus “Curve engine: MC-v4.19 [CONVERGED]” in the header.
+It reintroduces what I told it to remove.
+Navigation pattern differs from the monitor.
+The deep-dive uses top tabs (Risk Canvas | Counterparties).
+The monitor has a left rail.
+The brand name also differs: APEX RISK TERMINAL here, APEX RISK ANALYTICS there.
+This is the biggest threat to “reads as one product”.
+Data doesn’t match your files.
+Net CVA shows $4,120,450. mock-data.json has BNP at $3,080,000. It was copied from the old monitor image, which also had different numbers.
+The tenor table has 2Y and 30Y rows, but mock-credit.json has only six tenors.
+Possible colour issues, which I can’t confirm at this resolution.
+Negative MTM and CVA contribution values (for example -$1,210,000) may be red.
+DESIGN.md says breach red is not for negative values within policy.
+Zoom in and check.
