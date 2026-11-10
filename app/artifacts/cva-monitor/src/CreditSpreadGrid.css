@@ -1,0 +1,107 @@
+/* Credit spread dashboard. Tokens come from design/DESIGN.md (Stitch export, Route A). */
+.credit-shell {
+  --c-cobalt: #1d4ed8;
+  --c-breach: #dc2626;
+  --c-breach-bg: #fef2f2;
+  --c-widen: #d97706;
+  --c-widen-bg: #fef3c7;
+  --c-tighten: #16a34a;
+  --c-tighten-bg: #dcfce7;
+  --c-text: #0f172a;
+  --c-text-2: #475569;
+  --c-muted: #94a3b8;
+  --c-border: #e2e8f0;
+  --c-surface: #f8fafc;
+  --c-header: #f1f5f9;
+  background: var(--c-surface);
+  color: var(--c-text);
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.credit-table-wrap,
+.credit-term { background: #fff; border: 1px solid var(--c-border); border-radius: 2px; overflow: auto; }
+
+.credit-table { border-collapse: collapse; width: 100%; font-size: 11px; }
+.credit-table th {
+  height: 26px;
+  padding: 2px 8px;
+  background: var(--c-header);
+  border-bottom: 1px solid var(--c-border);
+  border-right: 1px solid var(--c-border);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.credit-table td {
+  height: 26px;
+  padding: 2px 8px;
+  border-bottom: 1px solid var(--c-border);
+  border-right: 1px solid var(--c-border);
+  white-space: nowrap;
+}
+.credit-table th:last-child,
+.credit-table td:last-child { border-right: 0; }
+.credit-table tbody tr:hover { background: var(--c-surface); }
+.credit-table tbody tr.is-selected { background: #eff6ff; box-shadow: inset 2px 0 0 var(--c-cobalt); }
+.credit-table tbody tr.is-breach { background: var(--c-breach-bg); }
+
+.align-left { text-align: left; }
+.align-right { text-align: right; }
+.align-center { text-align: center; }
+
+.credit-num { font: 11px var(--app-font-mono); font-variant-numeric: tabular-nums; }
+.credit-spread { font-weight: 600; }
+.credit-spread.threshold-alert { font-weight: 700; }
+.credit-widening { color: var(--c-widen); background: var(--c-widen-bg); font-weight: 500; }
+.credit-tightening { color: var(--c-tighten); background: var(--c-tighten-bg); font-weight: 500; }
+.credit-flat { color: var(--c-text-2); }
+
+.credit-entity {
+  background: none; border: 0; padding: 0; cursor: pointer;
+  font: inherit; font-weight: 500; color: var(--c-text);
+}
+.is-selected .credit-entity { color: var(--c-cobalt); font-weight: 600; }
+.credit-entity:hover { text-decoration: underline; }
+.credit-sector { color: var(--c-text-2); }
+.credit-dash { color: var(--c-muted); }
+.credit-rating {
+  font: 600 10px var(--app-font-mono);
+  padding: 1px 6px; border: 1px solid #cbd5e1; border-radius: 2px;
+  background: var(--c-header); color: #334155;
+}
+.credit-proxy {
+  display: inline-block; height: 14px; line-height: 13px; padding: 0 4px;
+  font: 700 9px var(--app-font-mono); letter-spacing: .05em;
+  border: 1px solid #bfdbfe; border-radius: 2px; background: #eff6ff; color: var(--c-cobalt);
+}
+.credit-link { color: var(--c-cobalt); font-size: 10px; font-weight: 600; text-decoration: none; }
+.credit-link:hover { text-decoration: underline; }
+
+.credit-empty { padding: 24px 8px; text-align: center; color: var(--c-text-2); }
+.credit-empty-title { display: block; font-weight: 600; color: var(--c-text); margin-bottom: 2px; }
+
+.credit-term { padding: 12px; }
+.credit-term-head {
+  display: flex; align-items: center; gap: 12px;
+  border-bottom: 1px solid var(--c-border); padding-bottom: 8px; margin-bottom: 8px;
+}
+.credit-term-title { font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+.credit-term-head .credit-link { font-size: 11px; }
+
+.credit-chart { width: 100%; height: auto; display: block; }
+.chart-grid { stroke: var(--c-border); stroke-dasharray: 2 2; }
+.chart-axis { stroke: #cbd5e1; }
+.chart-tick { font: 9px var(--app-font-mono); fill: var(--c-muted); }
+.chart-limit { stroke: var(--c-breach); stroke-width: 1.2; stroke-dasharray: 4 4; }
+.chart-limit-label { font: 700 9px var(--app-font-mono); fill: var(--c-breach); }
+.chart-curve { stroke: var(--c-cobalt); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.chart-dot { fill: var(--c-cobalt); stroke: #fff; stroke-width: 1.5; }
+.chart-value { font: 600 9px var(--app-font-mono); fill: var(--c-text-2); }
+.chart-tenor { font: 600 9px var(--app-font-mono); fill: #64748b; }
+.chart-benchmark .chart-value,
+.chart-benchmark .chart-tenor { fill: var(--c-cobalt); font-weight: 700; }

@@ -191,3 +191,13 @@ The deep-dive prompt described what to include. This one also said what to leave
 Iteration 4
 Prototype worked, home screen is the Credit dashboard I can navigate to CVA dashboard via CVA column links and CVA Page link.  I can click on the counterparty and drill down into the detail.
 
+
+## Route A: manual export to React component
+Export: `design/stitch-export/code.html` + `screen.png` (Stitch gave one self-contained Tailwind-CDN HTML file; `DESIGN.md` v2.1 copied alongside by hand).
+Build: `app/artifacts/cva-monitor/src/CreditSpreadGrid.tsx` (+ `.css`, `.stories.tsx`), props-driven (`rows`, optional `selectedLei`, `onSelect`, `cvaHref`), fed by `src/data/mock-credit.json` (copy of `design/mock-credit.json`). Follows the `CvaGrid` pattern: `data-testid` on table, rows, proxy chips and links; no new dependencies. Not wired into `App.tsx` (out of scope).
+Checks: `npm run typecheck` clean before and after; Storybook story renders all 20 rows, 26px rows and header, breach red on Brazil and Petrobras only, PROXY on Vitol and Trafigura, selecting a row updates the term structure; no console errors.
+What the export did and didn't give:
+- Gave exact tokens, colours, the 26px rule and the chart geometry; the HTML is hard-coded for 7 rows and one curve, so the data layer, selection and thresholds had to be written, not translated.
+- Tailwind classes were rewritten as plain CSS to match `CvaGrid`; the chart is inline SVG computed from data instead of hard-coded coordinates.
+- Kept the export's 0 to 200 bps axis for fidelity, so low-spread curves still look flat (drift 1 above). Axis only grows if a curve exceeds 200.
+- Font: app loads DM Mono (Replit); Inter and JetBrains Mono from DESIGN.md are not loaded, so numerics render in DM Mono. Logged, not changed.

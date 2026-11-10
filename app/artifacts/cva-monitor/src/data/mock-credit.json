@@ -1,0 +1,402 @@
+[
+  {
+    "counterparty": "BNP Paribas SA",
+    "lei": "549300VYZUK7S707I053",
+    "rating": "A+",
+    "sector": "Financials",
+    "spread5yBps": 64.2,
+    "change1dBps": 0.8,
+    "change5dBps": 2.1,
+    "proxy": false,
+    "proxyBasis": null,
+    "termStructureBps": {
+      "6M": 28.9,
+      "1Y": 37.2,
+      "3Y": 54.6,
+      "5Y": 64.2,
+      "7Y": 69.3,
+      "10Y": 73.2
+    },
+    "timestamp": "2026-10-06T14:20:00Z"
+  },
+  {
+    "counterparty": "Deutsche Bank AG",
+    "lei": "7LTWFZYICNSX8D621K86",
+    "rating": "BBB+",
+    "sector": "Financials",
+    "spread5yBps": 112.4,
+    "change1dBps": 3.4,
+    "change5dBps": 9.6,
+    "proxy": false,
+    "proxyBasis": null,
+    "termStructureBps": {
+      "6M": 50.6,
+      "1Y": 65.2,
+      "3Y": 95.5,
+      "5Y": 112.4,
+      "7Y": 121.4,
+      "10Y": 128.1
+    },
+    "timestamp": "2026-10-06T14:21:13Z"
+  },
+  {
+    "counterparty": "JPMorgan Chase & Co",
+    "lei": "K9P34Y6N3WD25RQ4F5ZR",
+    "rating": "A-",
+    "sector": "Financials",
+    "spread5yBps": 58,
+    "change1dBps": -0.5,
+    "change5dBps": 1.2,
+    "proxy": false,
+    "proxyBasis": null,
+    "termStructureBps": {
+      "6M": 26.1,
+      "1Y": 33.6,
+      "3Y": 49.3,
+      "5Y": 58,
+      "7Y": 62.6,
+      "10Y": 66.1
+    },
+    "timestamp": "2026-10-06T14:22:26Z"
+  },
+  {
+    "counterparty": "Goldman Sachs Group Inc",
+    "lei": "37E3P3E2Z8IQ9Y7JZB6C",
+    "rating": "BBB+",
+    "sector": "Financials",
+    "spread5yBps": 84.5,
+    "change1dBps": 1.9,
+    "change5dBps": 4.8,
+    "proxy": false,
+    "proxyBasis": null,
+    "termStructureBps": {
+      "6M": 38,
+      "1Y": 49,
+      "3Y": 71.8,
+      "5Y": 84.5,
+      "7Y": 91.3,
+      "10Y": 96.3
+    },
+    "timestamp": "2026-10-06T14:20:39Z"
+  },
+  {
+    "counterparty": "Barclays PLC",
+    "lei": "213800LBQA1Y9L22JB70",
+    "rating": "BBB+",
+    "sector": "Financials",
+    "spread5yBps": 98.5,
+    "change1dBps": 2.6,
+    "change5dBps": 6.3,
+    "proxy": false,
+    "proxyBasis": null,
+    "termStructureBps": {
+      "6M": 44.3,
+      "1Y": 57.1,
+      "3Y": 83.7,
+      "5Y": 98.5,
+      "7Y": 106.4,
+      "10Y": 112.3
+    },
+    "timestamp": "2026-10-06T14:21:52Z"
+  },
+  {
+    "counterparty": "HSBC Holdings PLC",
+    "lei": "N6Z43DVYRKTTNJFBF5JX",
+    "rating": "A-",
+    "sector": "Financials",
+    "spread5yBps": 67.5,
+    "change1dBps": 0.4,
+    "change5dBps": -1.1,
+    "proxy": false,
+    "proxyBasis": null,
+    "termStructureBps": {
+      "6M": 30.4,
+      "1Y": 39.2,
+      "3Y": 57.4,
+      "5Y": 67.5,
+      "7Y": 72.9,
+      "10Y": 76.9
+    },
+    "timestamp": "2026-10-06T14:22:05Z"
+  },
+  {
+    "counterparty": "UBS Group AG",
+    "lei": "VLSI47WQAL9VQ24ZKLMV",
+    "rating": "A-",
+    "sector": "Financials",
+    "spread5yBps": 61,
+    "change1dBps": -0.3,
+    "change5dBps": 0.9,
+    "proxy": false,
+    "proxyBasis": null,
+    "termStructureBps": {
+      "6M": 27.5,
+      "1Y": 35.4,
+      "3Y": 51.9,
+      "5Y": 61,
+      "7Y": 65.9,
+      "10Y": 69.5
+    },
+    "timestamp": "2026-10-06T14:20:18Z"
+  },
+  {
+    "counterparty": "Citigroup Inc",
+    "lei": "T45HU43JSIOM1TMA7V3D",
+    "rating": "BBB+",
+    "sector": "Financials",
+    "spread5yBps": 88,
+    "change1dBps": 1.1,
+    "change5dBps": 3.5,
+    "proxy": false,
+    "proxyBasis": null,
+    "termStructureBps": {
+      "6M": 39.6,
+      "1Y": 51,
+      "3Y": 74.8,
+      "5Y": 88,
+      "7Y": 95,
+      "10Y": 100.3
+    },
+    "timestamp": "2026-10-06T14:21:31Z"
+  },
+  {
+    "counterparty": "Republic of Italy",
+    "lei": "I8FPPV5ASPZH8RZHQMOE",
+    "rating": "BBB",
+    "sector": "Sovereign",
+    "spread5yBps": 118,
+    "change1dBps": -2.2,
+    "change5dBps": -5.4,
+    "proxy": false,
+    "proxyBasis": null,
+    "termStructureBps": {
+      "6M": 53.1,
+      "1Y": 68.4,
+      "3Y": 100.3,
+      "5Y": 118,
+      "7Y": 127.4,
+      "10Y": 134.5
+    },
+    "timestamp": "2026-10-06T14:22:44Z"
+  },
+  {
+    "counterparty": "Federative Republic of Brazil",
+    "lei": "95B9EE0VBGI09QYNK8W3",
+    "rating": "BB",
+    "sector": "Sovereign",
+    "spread5yBps": 205,
+    "change1dBps": 6.8,
+    "change5dBps": 14.5,
+    "proxy": false,
+    "proxyBasis": null,
+    "termStructureBps": {
+      "6M": 92.3,
+      "1Y": 118.9,
+      "3Y": 174.3,
+      "5Y": 205,
+      "7Y": 221.4,
+      "10Y": 233.7
+    },
+    "timestamp": "2026-10-06T14:20:57Z"
+  },
+  {
+    "counterparty": "Siemens AG",
+    "lei": "52990024ZP0L7244Y147",
+    "rating": "A+",
+    "sector": "Industrials",
+    "spread5yBps": 42,
+    "change1dBps": 0.2,
+    "change5dBps": 0.6,
+    "proxy": false,
+    "proxyBasis": null,
+    "termStructureBps": {
+      "6M": 18.9,
+      "1Y": 24.4,
+      "3Y": 35.7,
+      "5Y": 42,
+      "7Y": 45.4,
+      "10Y": 47.9
+    },
+    "timestamp": "2026-10-06T13:58:40Z"
+  },
+  {
+    "counterparty": "Toyota Motor Corp",
+    "lei": "3538006EUS8B5OQ64132",
+    "rating": "A+",
+    "sector": "Consumer Discretionary",
+    "spread5yBps": 38.5,
+    "change1dBps": 0.1,
+    "change5dBps": -0.4,
+    "proxy": false,
+    "proxyBasis": null,
+    "termStructureBps": {
+      "6M": 17.3,
+      "1Y": 22.3,
+      "3Y": 32.7,
+      "5Y": 38.5,
+      "7Y": 41.6,
+      "10Y": 43.9
+    },
+    "timestamp": "2026-10-06T13:41:12Z"
+  },
+  {
+    "counterparty": "TotalEnergies SE",
+    "lei": "TZPPPP6UP3C4DSA7L360",
+    "rating": "A+",
+    "sector": "Energy",
+    "spread5yBps": 49.8,
+    "change1dBps": 0.9,
+    "change5dBps": 2.2,
+    "proxy": false,
+    "proxyBasis": null,
+    "termStructureBps": {
+      "6M": 22.4,
+      "1Y": 28.9,
+      "3Y": 42.3,
+      "5Y": 49.8,
+      "7Y": 53.8,
+      "10Y": 56.8
+    },
+    "timestamp": "2026-10-06T14:20:36Z"
+  },
+  {
+    "counterparty": "Nomura Holdings Inc",
+    "lei": "5493004N60X5894P5P83",
+    "rating": "BBB+",
+    "sector": "Financials",
+    "spread5yBps": 124,
+    "change1dBps": 2,
+    "change5dBps": 5.1,
+    "proxy": false,
+    "proxyBasis": null,
+    "termStructureBps": {
+      "6M": 55.8,
+      "1Y": 71.9,
+      "3Y": 105.4,
+      "5Y": 124,
+      "7Y": 133.9,
+      "10Y": 141.4
+    },
+    "timestamp": "2026-10-06T14:21:49Z"
+  },
+  {
+    "counterparty": "Telefónica SA",
+    "lei": "9Y6N14DO9GMNU77VTUUJ",
+    "rating": "BBB-",
+    "sector": "Communications",
+    "spread5yBps": 96,
+    "change1dBps": 1.5,
+    "change5dBps": 3.7,
+    "proxy": false,
+    "proxyBasis": null,
+    "termStructureBps": {
+      "6M": 43.2,
+      "1Y": 55.7,
+      "3Y": 81.6,
+      "5Y": 96,
+      "7Y": 103.7,
+      "10Y": 109.4
+    },
+    "timestamp": "2026-10-06T14:22:02Z"
+  },
+  {
+    "counterparty": "Glencore International AG",
+    "lei": "5493002W8T0M42079637",
+    "rating": "BBB",
+    "sector": "Materials",
+    "spread5yBps": 145,
+    "change1dBps": 4.1,
+    "change5dBps": 11.2,
+    "proxy": false,
+    "proxyBasis": null,
+    "termStructureBps": {
+      "6M": 65.3,
+      "1Y": 84.1,
+      "3Y": 123.3,
+      "5Y": 145,
+      "7Y": 156.6,
+      "10Y": 165.3
+    },
+    "timestamp": "2026-10-06T14:20:15Z"
+  },
+  {
+    "counterparty": "Petróleo Brasileiro SA",
+    "lei": "596LGUAX1DXN9Y1XJ5GX",
+    "rating": "BB",
+    "sector": "Energy",
+    "spread5yBps": 290.5,
+    "change1dBps": 8.9,
+    "change5dBps": 21.3,
+    "proxy": false,
+    "proxyBasis": null,
+    "termStructureBps": {
+      "6M": 130.7,
+      "1Y": 168.5,
+      "3Y": 246.9,
+      "5Y": 290.5,
+      "7Y": 313.7,
+      "10Y": 331.2
+    },
+    "timestamp": "2026-10-06T14:21:28Z"
+  },
+  {
+    "counterparty": "Vitol Holding BV",
+    "lei": "NAMEYYWLECFPECXVM11H",
+    "rating": "NR",
+    "sector": "Energy",
+    "spread5yBps": 135,
+    "change1dBps": 2.3,
+    "change5dBps": 6,
+    "proxy": true,
+    "proxyBasis": "Commodities trader basket",
+    "termStructureBps": {
+      "6M": 60.8,
+      "1Y": 78.3,
+      "3Y": 114.8,
+      "5Y": 135,
+      "7Y": 145.8,
+      "10Y": 153.9
+    },
+    "timestamp": "2026-10-06T14:22:41Z"
+  },
+  {
+    "counterparty": "Rio Tinto plc",
+    "lei": "UGCMSMN5E6EUCLDU0UM5",
+    "rating": "A-",
+    "sector": "Materials",
+    "spread5yBps": 72,
+    "change1dBps": 1,
+    "change5dBps": 2.9,
+    "proxy": false,
+    "proxyBasis": null,
+    "termStructureBps": {
+      "6M": 32.4,
+      "1Y": 41.8,
+      "3Y": 61.2,
+      "5Y": 72,
+      "7Y": 77.8,
+      "10Y": 82.1
+    },
+    "timestamp": "2026-10-06T14:20:54Z"
+  },
+  {
+    "counterparty": "Trafigura Group",
+    "lei": "7OCUBRL5PTP5AA819T9U",
+    "rating": "NR",
+    "sector": "Materials",
+    "spread5yBps": 140,
+    "change1dBps": 3,
+    "change5dBps": 8,
+    "proxy": true,
+    "proxyBasis": "Commodities trader basket",
+    "termStructureBps": {
+      "6M": 63,
+      "1Y": 81.2,
+      "3Y": 119,
+      "5Y": 140,
+      "7Y": 151.2,
+      "10Y": 159.6
+    },
+    "timestamp": "2026-10-06T14:21:07Z"
+  }
+]

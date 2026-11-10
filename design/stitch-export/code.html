@@ -1,0 +1,445 @@
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Credit Spread Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: #F8FAFC;
+      color: #0F172A;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+    .font-mono-num {
+      font-family: "JetBrains Mono", "SF Mono", "Roboto Mono", Menlo, Consolas, monospace;
+      font-feature-settings: "tnum" on, "zero" on;
+      font-variant-numeric: tabular-nums;
+    }
+    .table-row-26 {
+      height: 26px;
+      min-height: 26px;
+      max-height: 26px;
+    }
+  </style>
+</head>
+<body class="flex h-screen w-screen overflow-hidden bg-[#F8FAFC] text-[#0F172A]">
+
+  <!-- LEFT-RAIL NAVIGATION (Matching CVA Monitor) -->
+  <aside class="w-56 flex-shrink-0 bg-white border-r border-[#E2E8F0] flex flex-col justify-between select-none">
+    <div>
+      <!-- Brand Header -->
+      <div class="h-10 px-3 flex items-center gap-2 border-b border-[#E2E8F0]">
+        <div class="w-4 h-4 bg-[#1D4ED8] rounded-xs flex items-center justify-center text-white text-[10px] font-bold">
+          <svg class="w-3 h-3 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+          </svg>
+        </div>
+        <span class="text-[12px] font-bold tracking-tight text-[#0F172A]">APEX RISK ANALYTICS</span>
+      </div>
+
+      <!-- Navigation Workspaces -->
+      <div class="px-2 pt-3">
+        <div class="text-[9px] font-bold uppercase tracking-wider text-[#64748B] px-2 mb-1.5">Analytics Workspaces</div>
+        <nav class="space-y-0.5 text-[11px] font-medium">
+          <!-- Active Nav Item -->
+          <a href="#" class="flex items-center gap-2 px-2.5 py-1.5 rounded-[2px] bg-[#1D4ED8] text-white font-semibold">
+            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="3" width="7" height="7"></rect>
+              <rect x="14" y="3" width="7" height="7"></rect>
+              <rect x="14" y="14" width="7" height="7"></rect>
+              <rect x="3" y="14" width="7" height="7"></rect>
+            </svg>
+            <span class="">Credit Spreads</span>
+          </a>
+
+          <a href="#" class="flex items-center gap-2 px-2.5 py-1.5 rounded-[2px] text-[#475569] hover:bg-[#F1F5F9] hover:text-[#0F172A] transition-colors">
+            <svg class="w-3.5 h-3.5 text-[#64748B]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+              <polyline points="17 6 23 6 23 12"></polyline>
+            </svg>
+            <span class="">CVA Sensitivity (Greeks)</span>
+          </a>
+
+          <a href="#" class="flex items-center gap-2 px-2.5 py-1.5 rounded-[2px] text-[#475569] hover:bg-[#F1F5F9] hover:text-[#0F172A] transition-colors">
+            <svg class="w-3.5 h-3.5 text-[#64748B]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            </svg>
+            <span class="">Counterparty Limits</span>
+          </a>
+
+          <a href="#" class="flex items-center gap-2 px-2.5 py-1.5 rounded-[2px] text-[#475569] hover:bg-[#F1F5F9] hover:text-[#0F172A] transition-colors">
+            <svg class="w-3.5 h-3.5 text-[#64748B]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="4" y="4" width="16" height="16" rx="2"></rect>
+              <rect x="9" y="9" width="6" height="6"></rect>
+              <line x1="9" y1="1" x2="9" y2="4"></line>
+              <line x1="15" y1="1" x2="15" y2="4"></line>
+              <line x1="9" y1="20" x2="9" y2="23"></line>
+              <line x1="15" y1="20" x2="15" y2="23"></line>
+              <line x1="20" y1="9" x2="23" y2="9"></line>
+              <line x1="20" y1="14" x2="23" y2="14"></line>
+              <line x1="1" y1="9" x2="4" y2="9"></line>
+              <line x1="1" y1="14" x2="4" y2="14"></line>
+            </svg>
+            <span class="">Monte Carlo Engine</span>
+          </a>
+
+          <a href="#" class="flex items-center gap-2 px-2.5 py-1.5 rounded-[2px] text-[#475569] hover:bg-[#F1F5F9] hover:text-[#0F172A] transition-colors">
+            <svg class="w-3.5 h-3.5 text-[#64748B]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+              <line x1="12" y1="9" x2="12" y2="13"></line>
+              <line x1="12" y1="17" x2="12.01" y2="17"></line>
+            </svg>
+            <span class="">Stress Testing &amp; Scenarios</span>
+          </a>
+        </nav>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN VIEWPORT -->
+  <main class="flex-1 flex flex-col min-w-0 bg-[#F8FAFC] overflow-y-auto">
+    
+    <!-- SLIM WORKSPACE TITLE (No telemetry, no KPI cards, no extra action buttons) -->
+    <div class="h-9 px-4 flex items-center border-b border-[#E2E8F0] bg-white flex-shrink-0">
+      <h1 class="text-[13px] font-bold uppercase tracking-wider text-[#0F172A]">Credit Spread Monitor</h1>
+    </div>
+
+    <!-- MAIN DATA CANVAS -->
+    <div class="p-3 space-y-3 flex-1 flex flex-col">
+      
+      <!-- MAIN TABLE CONTAINER -->
+      <div class="bg-white border border-[#E2E8F0] rounded-[2px] overflow-hidden shadow-xs">
+        <table class="w-full border-collapse text-[11px] select-none">
+          <thead>
+            <tr class="h-[26px] min-h-[26px] max-h-[26px] bg-[#F1F5F9] border-b border-[#E2E8F0] text-[#0F172A] font-semibold text-[10px] uppercase tracking-wider">
+              <th class="px-2 py-0.5 text-left border-r border-[#E2E8F0]">Entity</th>
+              <th class="px-2 py-0.5 text-center border-r border-[#E2E8F0] w-20">Rating</th>
+              <th class="px-2 py-0.5 text-left border-r border-[#E2E8F0] w-36">Sector</th>
+              <th class="px-2 py-0.5 text-right border-r border-[#E2E8F0] w-32">5Y Spread (bps)</th>
+              <th class="px-2 py-0.5 text-right border-r border-[#E2E8F0] w-28">1D Change (bps)</th>
+              <th class="px-2 py-0.5 text-right border-r border-[#E2E8F0] w-28">5D Change (bps)</th>
+              <th class="px-2 py-0.5 text-center border-r border-[#E2E8F0] w-20">Proxy</th>
+              <th class="px-2 py-0.5 text-center w-16">CVA</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-[#E2E8F0]">
+
+            <!-- ROW 1: BNP Paribas SA (Selected, normal spreads, non-breach) -->
+            <tr class="table-row-26 bg-[#EFF6FF] border-l-2 border-l-[#1D4ED8] hover:bg-[#E0EDFF] transition-colors cursor-pointer">
+              <td class="px-2 py-0.5 text-left font-medium text-[#0F172A] border-r border-[#E2E8F0] truncate flex items-center gap-1.5 h-[26px]">
+                <span class="w-1.5 h-1.5 rounded-full bg-[#1D4ED8]"></span>
+                <span class="font-semibold text-[#1D4ED8]">BNP Paribas SA</span>
+              </td>
+              <td class="px-2 py-0.5 text-center border-r border-[#E2E8F0]">
+                <span class="font-mono-num text-[10px] font-semibold bg-[#F1F5F9] text-[#334155] px-1.5 py-0.2 rounded-[2px] border border-[#CBD5E1]">A+</span>
+              </td>
+              <td class="px-2 py-0.5 text-left text-[#475569] border-r border-[#E2E8F0] truncate">Financials</td>
+              <!-- 5Y: 64.2 (under 200 bps -> plain dark) -->
+              <td class="px-2 py-0.5 text-right font-mono-num font-semibold text-[#0F172A] border-r border-[#E2E8F0]">64.2</td>
+              <!-- 1D: +0.8 (widening in amber with +) -->
+              <td class="px-2 py-0.5 text-right font-mono-num font-medium text-[#D97706] border-r border-[#E2E8F0]" style="background-color: rgb(254, 243, 199);">+0.8</td>
+              <!-- 5D: +2.1 (widening in amber with +) -->
+              <td class="px-2 py-0.5 text-right font-mono-num font-medium text-[#D97706] border-r border-[#E2E8F0]" style="background-color: rgb(254, 243, 199);">+2.1</td>
+              <td class="px-2 py-0.5 text-center border-r border-[#E2E8F0]">
+                <span class="text-[#94A3B8]">—</span>
+              </td>
+              <td class="px-2 py-0.5 text-center">
+                <a href="#" class="text-[#1D4ED8] hover:underline font-semibold text-[10px]">CVA</a>
+              </td>
+            </tr>
+
+            <!-- ROW 2: Deutsche Bank AG -->
+            <tr class="table-row-26 bg-white hover:bg-[#F8FAFC] transition-colors">
+              <td class="px-2 py-0.5 text-left font-medium text-[#0F172A] border-r border-[#E2E8F0] truncate">Deutsche Bank AG</td>
+              <td class="px-2 py-0.5 text-center border-r border-[#E2E8F0]">
+                <span class="font-mono-num text-[10px] font-semibold bg-[#F1F5F9] text-[#334155] px-1.5 py-0.2 rounded-[2px] border border-[#CBD5E1]">BBB+</span>
+              </td>
+              <td class="px-2 py-0.5 text-left text-[#475569] border-r border-[#E2E8F0] truncate">Financials</td>
+              <!-- 5Y: 112.4 (under 200 bps -> plain dark) -->
+              <td class="px-2 py-0.5 text-right font-mono-num font-semibold text-[#0F172A] border-r border-[#E2E8F0]">112.4</td>
+              <!-- 1D: +3.4 (amber) -->
+              <td class="px-2 py-0.5 text-right font-mono-num font-medium text-[#D97706] border-r border-[#E2E8F0]" style="background-color: rgb(254, 243, 199);">+3.4</td>
+              <!-- 5D: +9.6 (amber) -->
+              <td class="px-2 py-0.5 text-right font-mono-num font-medium text-[#D97706] border-r border-[#E2E8F0]" style="background-color: rgb(254, 243, 199);">+9.6</td>
+              <td class="px-2 py-0.5 text-center border-r border-[#E2E8F0]">
+                <span class="text-[#94A3B8]">—</span>
+              </td>
+              <td class="px-2 py-0.5 text-center">
+                <a href="#" class="text-[#1D4ED8] hover:underline font-semibold text-[10px]">CVA</a>
+              </td>
+            </tr>
+
+            <!-- ROW 3: Republic of Italy -->
+            <tr class="table-row-26 bg-white hover:bg-[#F8FAFC] transition-colors">
+              <td class="px-2 py-0.5 text-left font-medium text-[#0F172A] border-r border-[#E2E8F0] truncate">Republic of Italy</td>
+              <td class="px-2 py-0.5 text-center border-r border-[#E2E8F0]">
+                <span class="font-mono-num text-[10px] font-semibold bg-[#F1F5F9] text-[#334155] px-1.5 py-0.2 rounded-[2px] border border-[#CBD5E1]">BBB</span>
+              </td>
+              <td class="px-2 py-0.5 text-left text-[#475569] border-r border-[#E2E8F0] truncate">Sovereign</td>
+              <!-- 5Y: 118.0 (under 200 bps -> plain dark) -->
+              <td class="px-2 py-0.5 text-right font-mono-num font-semibold text-[#0F172A] border-r border-[#E2E8F0]">118.0</td>
+              <!-- 1D: -2.2 (tightening in green with -) -->
+              <td class="px-2 py-0.5 text-right font-mono-num font-medium text-[#16A34A] border-r border-[#E2E8F0]" style="background-color: rgb(220, 252, 231);">-2.2</td>
+              <!-- 5D: -5.4 (tightening in green with -) -->
+              <td class="px-2 py-0.5 text-right font-mono-num font-medium text-[#16A34A] border-r border-[#E2E8F0]" style="background-color: rgb(220, 252, 231);">-5.4</td>
+              <td class="px-2 py-0.5 text-center border-r border-[#E2E8F0]">
+                <span class="text-[#94A3B8]">—</span>
+              </td>
+              <td class="px-2 py-0.5 text-center">
+                <a href="#" class="text-[#1D4ED8] hover:underline font-semibold text-[10px]">CVA</a>
+              </td>
+            </tr>
+
+            <!-- ROW 4: Federative Republic of Brazil (BREACH: 205.0 > 200 bps) -->
+            <tr class="table-row-26 bg-[#FEF2F2] hover:bg-[#FEE2E2] transition-colors">
+              <td class="px-2 py-0.5 text-left font-medium text-[#0F172A] border-r border-[#E2E8F0] truncate">Federative Republic of Brazil</td>
+              <td class="px-2 py-0.5 text-center border-r border-[#E2E8F0]">
+                <span class="font-mono-num text-[10px] font-semibold bg-[#F1F5F9] text-[#334155] px-1.5 py-0.2 rounded-[2px] border border-[#CBD5E1]">BB</span>
+              </td>
+              <td class="px-2 py-0.5 text-left text-[#475569] border-r border-[#E2E8F0] truncate">Sovereign</td>
+              <!-- 5Y: 205.0 > 200 bps -> BREACH RED -->
+              <td class="px-2 py-0.5 text-right font-mono-num font-bold text-[#DC2626] border-r border-[#E2E8F0]">205.0</td>
+              <!-- 1D: +6.8 (amber) -->
+              <td class="px-2 py-0.5 text-right font-mono-num font-medium text-[#D97706] border-r border-[#E2E8F0]" style="background-color: rgb(254, 243, 199);">+6.8</td>
+              <!-- 5D: +14.5 (amber) -->
+              <td class="px-2 py-0.5 text-right font-mono-num font-medium text-[#D97706] border-r border-[#E2E8F0]" style="background-color: rgb(254, 243, 199);">+14.5</td>
+              <td class="px-2 py-0.5 text-center border-r border-[#E2E8F0]">
+                <span class="text-[#94A3B8]">—</span>
+              </td>
+              <td class="px-2 py-0.5 text-center">
+                <a href="#" class="text-[#1D4ED8] hover:underline font-semibold text-[10px]">CVA</a>
+              </td>
+            </tr>
+
+            <!-- ROW 5: Toyota Motor Corp -->
+            <tr class="table-row-26 bg-white hover:bg-[#F8FAFC] transition-colors">
+              <td class="px-2 py-0.5 text-left font-medium text-[#0F172A] border-r border-[#E2E8F0] truncate">Toyota Motor Corp</td>
+              <td class="px-2 py-0.5 text-center border-r border-[#E2E8F0]">
+                <span class="font-mono-num text-[10px] font-semibold bg-[#F1F5F9] text-[#334155] px-1.5 py-0.2 rounded-[2px] border border-[#CBD5E1]">A+</span>
+              </td>
+              <td class="px-2 py-0.5 text-left text-[#475569] border-r border-[#E2E8F0] truncate">Consumer Discretionary</td>
+              <!-- 5Y: 38.5 (under 200 bps -> plain dark) -->
+              <td class="px-2 py-0.5 text-right font-mono-num font-semibold text-[#0F172A] border-r border-[#E2E8F0]">38.5</td>
+              <!-- 1D: +0.1 (amber) -->
+              <td class="px-2 py-0.5 text-right font-mono-num font-medium text-[#D97706] border-r border-[#E2E8F0]" style="background-color: rgb(254, 243, 199);">+0.1</td>
+              <!-- 5D: -0.4 (green) -->
+              <td class="px-2 py-0.5 text-right font-mono-num font-medium text-[#16A34A] border-r border-[#E2E8F0]" style="background-color: rgb(220, 252, 231);">-0.4</td>
+              <td class="px-2 py-0.5 text-center border-r border-[#E2E8F0]">
+                <span class="text-[#94A3B8]">—</span>
+              </td>
+              <td class="px-2 py-0.5 text-center">
+                <a href="#" class="text-[#1D4ED8] hover:underline font-semibold text-[10px]">CVA</a>
+              </td>
+            </tr>
+
+            <!-- ROW 6: Petróleo Brasileiro SA (BREACH: 290.5 > 200 bps) -->
+            <tr class="table-row-26 bg-[#FEF2F2] hover:bg-[#FEE2E2] transition-colors">
+              <td class="px-2 py-0.5 text-left font-medium text-[#0F172A] border-r border-[#E2E8F0] truncate">Petróleo Brasileiro SA</td>
+              <td class="px-2 py-0.5 text-center border-r border-[#E2E8F0]">
+                <span class="font-mono-num text-[10px] font-semibold bg-[#F1F5F9] text-[#334155] px-1.5 py-0.2 rounded-[2px] border border-[#CBD5E1]">BB</span>
+              </td>
+              <td class="px-2 py-0.5 text-left text-[#475569] border-r border-[#E2E8F0] truncate">Energy</td>
+              <!-- 5Y: 290.5 > 200 bps -> BREACH RED -->
+              <td class="px-2 py-0.5 text-right font-mono-num font-bold text-[#DC2626] border-r border-[#E2E8F0]">290.5</td>
+              <!-- 1D: +8.9 (amber) -->
+              <td class="px-2 py-0.5 text-right font-mono-num font-medium text-[#D97706] border-r border-[#E2E8F0]" style="background-color: rgb(254, 243, 199);">+8.9</td>
+              <!-- 5D: +21.3 (amber) -->
+              <td class="px-2 py-0.5 text-right font-mono-num font-medium text-[#D97706] border-r border-[#E2E8F0]" style="background-color: rgb(254, 243, 199);">+21.3</td>
+              <td class="px-2 py-0.5 text-center border-r border-[#E2E8F0]">
+                <span class="text-[#94A3B8]">—</span>
+              </td>
+              <td class="px-2 py-0.5 text-center">
+                <a href="#" class="text-[#1D4ED8] hover:underline font-semibold text-[10px]">CVA</a>
+              </td>
+            </tr>
+
+            <!-- ROW 7: Trafigura Group (PROXY flag present) -->
+            <tr class="table-row-26 bg-white hover:bg-[#F8FAFC] transition-colors">
+              <td class="px-2 py-0.5 text-left font-medium text-[#0F172A] border-r border-[#E2E8F0] truncate">Trafigura Group</td>
+              <td class="px-2 py-0.5 text-center border-r border-[#E2E8F0]">
+                <span class="font-mono-num text-[10px] font-semibold bg-[#F1F5F9] text-[#64748B] px-1.5 py-0.2 rounded-[2px] border border-[#CBD5E1]">NR</span>
+              </td>
+              <td class="px-2 py-0.5 text-left text-[#475569] border-r border-[#E2E8F0] truncate">Materials</td>
+              <!-- 5Y: 140.0 (under 200 bps -> plain dark) -->
+              <td class="px-2 py-0.5 text-right font-mono-num font-semibold text-[#0F172A] border-r border-[#E2E8F0]">140.0</td>
+              <!-- 1D: +3.0 (amber) -->
+              <td class="px-2 py-0.5 text-right font-mono-num font-medium text-[#D97706] border-r border-[#E2E8F0]" style="background-color: rgb(254, 243, 199);">+3.0</td>
+              <!-- 5D: +8.0 (amber) -->
+              <td class="px-2 py-0.5 text-right font-mono-num font-medium text-[#D97706] border-r border-[#E2E8F0]" style="background-color: rgb(254, 243, 199);">+8.0</td>
+              <!-- PROXY Micro-badge -->
+              <td class="px-2 py-0.5 text-center border-r border-[#E2E8F0]">
+                <span class="inline-block px-1 py-0 h-[14px] leading-[13px] text-[9px] font-mono-num font-bold tracking-wider rounded-[2px] bg-[#EFF6FF] text-[#1D4ED8] border border-[#BFDBFE]">PROXY</span>
+              </td>
+              <td class="px-2 py-0.5 text-center">
+                <a href="#" class="text-[#1D4ED8] hover:underline font-semibold text-[10px]">CVA</a>
+              </td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+
+      <!-- TERM STRUCTURE SECTION FOR BNP PARIBAS SA -->
+      <div class="bg-white border border-[#E2E8F0] rounded-[2px] p-3 flex flex-col gap-2 shadow-xs">
+        
+        <!-- Header row with Chart Title & "View CVA charge" link beside it -->
+        <div class="flex items-center justify-between border-b border-[#E2E8F0] pb-2">
+          <div class="flex items-center gap-3">
+            <span class="text-[12px] font-bold uppercase tracking-wider text-[#0F172A]">Term Structure — BNP Paribas SA</span>
+            <span class="text-[#CBD5E1]">|</span>
+            <a href="#" class="text-[11px] font-semibold text-[#1D4ED8] hover:underline flex items-center gap-1">
+              <span class="">View CVA charge</span>
+              <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14"></path>
+                <path d="m12 5 7 7-7 7"></path>
+              </svg>
+            </a>
+          </div>
+          <div class="flex items-center gap-4 text-[10px] font-mono-num text-[#64748B]">
+            <span class="flex items-center gap-1.5">
+              <span class="w-3 h-0.5 bg-[#1D4ED8] inline-block"></span>
+              <span class="">5Y Benchmark Curve (#1D4ED8)</span>
+            </span>
+            <span class="flex items-center gap-1.5">
+              <span class="w-3 border-t border-dashed border-[#DC2626] inline-block"></span>
+              <span class="text-[#DC2626]">Breach Threshold: 200 bps</span>
+            </span>
+          </div>
+        </div>
+
+        <!-- Chart Canvas + Tenor Data Summary Bar -->
+        <div class="flex flex-col gap-2">
+          
+          <!-- Exact Tenor Spread Values Bar (6M 28.9, 1Y 37.2, 3Y 54.6, 5Y 64.2, 7Y 69.3, 10Y 73.2) -->
+          <div class="grid grid-cols-6 gap-2 bg-[#F8FAFC] border border-[#E2E8F0] rounded-[2px] p-2 text-center">
+            <div class="border-r border-[#E2E8F0] last:border-0">
+              <div class="text-[9px] font-bold uppercase text-[#64748B] tracking-wider">6M</div>
+              <div class="text-[12px] font-mono-num font-semibold text-[#0F172A]">28.9 <span class="text-[9px] text-[#64748B]">bps</span></div>
+            </div>
+            <div class="border-r border-[#E2E8F0] last:border-0">
+              <div class="text-[9px] font-bold uppercase text-[#64748B] tracking-wider">1Y</div>
+              <div class="text-[12px] font-mono-num font-semibold text-[#0F172A]">37.2 <span class="text-[9px] text-[#64748B]">bps</span></div>
+            </div>
+            <div class="border-r border-[#E2E8F0] last:border-0">
+              <div class="text-[9px] font-bold uppercase text-[#64748B] tracking-wider">3Y</div>
+              <div class="text-[12px] font-mono-num font-semibold text-[#0F172A]">54.6 <span class="text-[9px] text-[#64748B]">bps</span></div>
+            </div>
+            <div class="border-r border-[#E2E8F0] last:border-0 bg-[#EFF6FF] rounded-[2px]">
+              <div class="text-[9px] font-bold uppercase text-[#1D4ED8] tracking-wider">5Y (Benchmark)</div>
+              <div class="text-[12px] font-mono-num font-bold text-[#1D4ED8]">64.2 <span class="text-[9px] text-[#1D4ED8]">bps</span></div>
+            </div>
+            <div class="border-r border-[#E2E8F0] last:border-0">
+              <div class="text-[9px] font-bold uppercase text-[#64748B] tracking-wider">7Y</div>
+              <div class="text-[12px] font-mono-num font-semibold text-[#0F172A]">69.3 <span class="text-[9px] text-[#64748B]">bps</span></div>
+            </div>
+            <div>
+              <div class="text-[9px] font-bold uppercase text-[#64748B] tracking-wider">10Y</div>
+              <div class="text-[12px] font-mono-num font-semibold text-[#0F172A]">73.2 <span class="text-[9px] text-[#64748B]">bps</span></div>
+            </div>
+          </div>
+
+          <!-- SVG Term Structure Chart -->
+          <div class="h-44 w-full bg-[#FFFFFF] border border-[#E2E8F0] rounded-[2px] relative p-2">
+            <svg class="w-full h-full overflow-visible" viewBox="0 0 900 150" preserveAspectRatio="none">
+              <defs>
+                <linearGradient id="curveGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stop-color="#1D4ED8" stop-opacity="0.15"></stop>
+                  <stop offset="100%" stop-color="#1D4ED8" stop-opacity="0.0"></stop>
+                </linearGradient>
+              </defs>
+
+              <!-- Grid horizontal rules -->
+              <!-- 200 bps breach line -->
+              <line x1="50" y1="20" x2="880" y2="20" stroke="#DC2626" stroke-width="1.2" stroke-dasharray="4,4"></line>
+              <text x="44" y="24" text-anchor="end" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="600" fill="#DC2626">200.0</text>
+              <text x="885" y="24" text-anchor="start" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="700" fill="#DC2626">LIMIT BREACH (200 bps)</text>
+
+              <!-- 150 bps -->
+              <line x1="50" y1="50" x2="880" y2="50" stroke="#E2E8F0" stroke-width="1" stroke-dasharray="2,2"></line>
+              <text x="44" y="54" text-anchor="end" font-family="'JetBrains Mono', monospace" font-size="9" fill="#94A3B8">150.0</text>
+
+              <!-- 100 bps -->
+              <line x1="50" y1="80" x2="880" y2="80" stroke="#E2E8F0" stroke-width="1" stroke-dasharray="2,2"></line>
+              <text x="44" y="84" text-anchor="end" font-family="'JetBrains Mono', monospace" font-size="9" fill="#94A3B8">100.0</text>
+
+              <!-- 50 bps -->
+              <line x1="50" y1="110" x2="880" y2="110" stroke="#E2E8F0" stroke-width="1" stroke-dasharray="2,2"></line>
+              <text x="44" y="114" text-anchor="end" font-family="'JetBrains Mono', monospace" font-size="9" fill="#94A3B8">50.0</text>
+
+              <!-- Baseline 0 bps -->
+              <line x1="50" y1="140" x2="880" y2="140" stroke="#CBD5E1" stroke-width="1"></line>
+              <text x="44" y="143" text-anchor="end" font-family="'JetBrains Mono', monospace" font-size="9" fill="#94A3B8">0.0</text>
+
+              <!-- Vertical grid lines for Tenors:
+                   6M: x = 110, spread = 28.9 -> y = 140 - (28.9/200)*120 = 122.66
+                   1Y: x = 250, spread = 37.2 -> y = 140 - (37.2/200)*120 = 117.68
+                   3Y: x = 400, spread = 54.6 -> y = 140 - (54.6/200)*120 = 107.24
+                   5Y: x = 550, spread = 64.2 -> y = 140 - (64.2/200)*120 = 101.48
+                   7Y: x = 700, spread = 69.3 -> y = 140 - (69.3/200)*120 = 98.42
+                   10Y: x = 850, spread = 73.2 -> y = 140 - (73.2/200)*120 = 96.08
+              -->
+              <line x1="110" y1="20" x2="110" y2="140" stroke="#F1F5F9" stroke-width="1"></line>
+              <line x1="250" y1="20" x2="250" y2="140" stroke="#F1F5F9" stroke-width="1"></line>
+              <line x1="400" y1="20" x2="400" y2="140" stroke="#F1F5F9" stroke-width="1"></line>
+              <line x1="550" y1="20" x2="550" y2="140" stroke="#EFF6FF" stroke-width="1.5"></line>
+              <line x1="700" y1="20" x2="700" y2="140" stroke="#F1F5F9" stroke-width="1"></line>
+              <line x1="850" y1="20" x2="850" y2="140" stroke="#F1F5F9" stroke-width="1"></line>
+
+              <!-- Shaded curve area under curve -->
+              <polygon points="110,122.66 250,117.68 400,107.24 550,101.48 700,98.42 850,96.08 850,140 110,140" fill="url(#curveGradient)"></polygon>
+
+              <!-- Polyline Curve in Cobalt #1D4ED8 -->
+              <polyline points="110,122.66 250,117.68 400,107.24 550,101.48 700,98.42 850,96.08" fill="none" stroke="#1D4ED8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></polyline>
+
+              <!-- Data markers & badges -->
+              <!-- 6M -->
+              <circle cx="110" cy="122.66" r="3" fill="#1D4ED8" stroke="#FFFFFF" stroke-width="1.5"></circle>
+              <text x="110" y="116" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="600" fill="#475569">28.9</text>
+              <text x="110" y="150" text-anchor="middle" font-family="'Inter', sans-serif" font-size="9" font-weight="600" fill="#64748B">6M</text>
+
+              <!-- 1Y -->
+              <circle cx="250" cy="117.68" r="3" fill="#1D4ED8" stroke="#FFFFFF" stroke-width="1.5"></circle>
+              <text x="250" y="111" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="600" fill="#475569">37.2</text>
+              <text x="250" y="150" text-anchor="middle" font-family="'Inter', sans-serif" font-size="9" font-weight="600" fill="#64748B">1Y</text>
+
+              <!-- 3Y -->
+              <circle cx="400" cy="107.24" r="3" fill="#1D4ED8" stroke="#FFFFFF" stroke-width="1.5"></circle>
+              <text x="400" y="100" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="600" fill="#475569">54.6</text>
+              <text x="400" y="150" text-anchor="middle" font-family="'Inter', sans-serif" font-size="9" font-weight="600" fill="#64748B">3Y</text>
+
+              <!-- 5Y Benchmark highlight -->
+              <circle cx="550" cy="101.48" r="4.5" fill="#1D4ED8" stroke="#FFFFFF" stroke-width="2"></circle>
+              <rect x="525" y="81" width="50" height="15" rx="2" fill="#1D4ED8"></rect>
+              <text x="550" y="92" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="700" fill="#FFFFFF">64.2 bps</text>
+              <text x="550" y="150" text-anchor="middle" font-family="'Inter', sans-serif" font-size="9" font-weight="700" fill="#1D4ED8">5Y (BMK)</text>
+
+              <!-- 7Y -->
+              <circle cx="700" cy="98.42" r="3" fill="#1D4ED8" stroke="#FFFFFF" stroke-width="1.5"></circle>
+              <text x="700" y="91" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="600" fill="#475569">69.3</text>
+              <text x="700" y="150" text-anchor="middle" font-family="'Inter', sans-serif" font-size="9" font-weight="600" fill="#64748B">7Y</text>
+
+              <!-- 10Y -->
+              <circle cx="850" cy="96.08" r="3" fill="#1D4ED8" stroke="#FFFFFF" stroke-width="1.5"></circle>
+              <text x="850" y="89" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="600" fill="#475569">73.2</text>
+              <text x="850" y="150" text-anchor="middle" font-family="'Inter', sans-serif" font-size="9" font-weight="600" fill="#64748B">10Y</text>
+            </svg>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+
+
+
+
+</body></html>
