@@ -193,11 +193,20 @@ Prototype worked, home screen is the Credit dashboard I can navigate to CVA dash
 
 
 ## Route A: manual export to React component
-Export: `design/stitch-export/code.html` + `screen.png` (Stitch gave one self-contained Tailwind-CDN HTML file; `DESIGN.md` v2.1 copied alongside by hand).
-Build: `app/artifacts/cva-monitor/src/CreditSpreadGrid.tsx` (+ `.css`, `.stories.tsx`), props-driven (`rows`, optional `selectedLei`, `onSelect`, `cvaHref`), fed by `src/data/mock-credit.json` (copy of `design/mock-credit.json`). Follows the `CvaGrid` pattern: `data-testid` on table, rows, proxy chips and links; no new dependencies. Not wired into `App.tsx` (out of scope).
-Checks: `npm run typecheck` clean before and after; Storybook story renders all 20 rows, 26px rows and header, breach red on Brazil and Petrobras only, PROXY on Vitol and Trafigura, selecting a row updates the term structure; no console errors.
-What the export did and didn't give:
-- Gave exact tokens, colours, the 26px rule and the chart geometry; the HTML is hard-coded for 7 rows and one curve, so the data layer, selection and thresholds had to be written, not translated.
-- Tailwind classes were rewritten as plain CSS to match `CvaGrid`; the chart is inline SVG computed from data instead of hard-coded coordinates.
-- Kept the export's 0 to 200 bps axis for fidelity, so low-spread curves still look flat (drift 1 above). Axis only grows if a curve exceeds 200.
-- Font: app loads DM Mono (Replit); Inter and JetBrains Mono from DESIGN.md are not loaded, so numerics render in DM Mono. Logged, not changed.
+- **Export:** `design/stitch-export/` holds `code.html` (one self-contained Tailwind-CDN file) and `screen.png`; I copied `DESIGN.md` v2.1 in by hand.
+- **Build:** Claude Code built `CreditSpreadGrid` (`app/artifacts/cva-monitor/src/CreditSpreadGrid.tsx`, with `.css` and `.stories.tsx`) from that export. It is props-driven (`rows`, optional `selectedLei`, `onSelect`, `cvaHref`), reads a copy of `mock-credit.json`, follows the `CvaGrid` pattern (`data-testid` on table, rows, proxy chips and links) and adds no dependencies. It is not wired into `App.tsx`. Screenshot: [UI-credit-component.jpg](UI-credit-component.jpg).
+- **Checks:** typecheck clean before and after. In Storybook the Populated story renders all 20 rows, rows and header measure 26px, breach red shows on Brazil and Petrobras only, PROXY shows on Vitol and Trafigura, and selecting a row updates the term structure. No console errors.
+- **What the export gave:** exact colours, the 26px rule and the chart geometry. The HTML is hard-coded for 7 rows and one curve, so selection, thresholds and the data layer had to be written, not translated.
+- **What changed in translation:** Tailwind classes became plain CSS to match `CvaGrid`, and the chart is inline SVG computed from data rather than fixed coordinates.
+- **Known gaps:** I kept the export's 0 to 200 bps axis, so low-spread curves still look flat (drift 1 under iteration 3). The app loads DM Mono, not the Inter and JetBrains Mono from DESIGN.md, so numerics render in DM Mono.
+
+## Evidence
+Screens: [UI-stitch-deepdive.jpg](UI-stitch-deepdive.jpg), [UI-stitch-credit.jpg](UI-stitch-credit.jpg), [UI-stitch-credit-edit.jpg](UI-stitch-credit-edit.jpg) (after the element-level edit). Prototype: [prototype-clickthrough.gif](prototype-clickthrough.gif), [prototype-1-monitor.jpg](prototype-1-monitor.jpg), [prototype-1-cva.jpg](prototype-1-cva.jpg).
+
+## Retro (Module 1b)
+- **A design system controls style, not scope.** The first DESIGN.md looked polished but carried two palettes, a CVA threshold ($1.5M) that would have turned most rows red, and the Module 1 clutter I had already cut (ribbon, nav dock, engine telemetry). One revision prompt with four numbered fixes sorted it, and two small leftovers (tenors, PROXY vs MAP) were quicker to hand-edit than to re-prompt.
+- **Inheriting the system did not stop invention.** The deep-dive picked up the colours and density but added two tables, engine telemetry, top-tab navigation and CVA figures that did not match `mock-data.json`.
+- **Saying what to leave out, and giving the data, worked.** The credit screen prompt listed the exclusions and the exact rows and tenors, and came back with near-zero drift. Same design system, so the difference was the prompt.
+- **Stitch features verified hands-on:** DESIGN.md generation, prototype click-through, and element-level edit all exist. The generated prototype let me click through from the credit dashboard to the CVA screen and into the counterparty drill-down (iteration 4).
+- **Route A:** the export is a good visual spec, not a component. Most of the Claude Code work was the data layer and behaviour around it. Module 1c will test whether the MCP route closes that gap.
+- **Bank context:** real use would need InfoSec and data-governance approval, and synthetic data only, as here.

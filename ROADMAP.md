@@ -2,7 +2,7 @@
 
 A six-module walkthrough of an AI-assisted SDLC, one tool per stage, run against a single small CVA monitoring dashboard. Each module's output is a concrete, interview-ready artefact — not just familiarity with a tool, but a demonstrated reason for picking it at that stage.
 
-**Status:** Modules 1 (Stitch), 2 (Replit Agent), 3 (Storybook), 4 (Playwright) and 6 (Notion AI, `docs/cva-dashboard-onepager.md`) done. Artefacts in `design/`, `app/` and `app/artifacts/cva-monitor/src/CvaGrid.stories.tsx`. Module 5 (CodeRabbit) is **blocked**: PR #21 is open with the planted edge, but CodeRabbit never reviewed it (see `app/PROMPTS.md`); parked, Module 6 completed without it. Issues raised in advance: #15 (M4), #16 (M5), #17 (M6).
+**Status:** Modules 1 (Stitch), 1b (Stitch design system and multi-screen, `design/`), 2 (Replit Agent), 3 (Storybook), 4 (Playwright) and 6 (Notion AI, `docs/cva-dashboard-onepager.md`) done. Artefacts in `design/`, `app/` and `app/artifacts/cva-monitor/src/CvaGrid.stories.tsx`. Module 5 (CodeRabbit) is **blocked**: PR #21 is open with the planted edge, but CodeRabbit never reviewed it (see `app/PROMPTS.md`); parked, Module 6 completed without it. Issues raised in advance: #15 (M4), #16 (M5), #17 (M6).
 
 ## Domain choice
 
@@ -17,7 +17,7 @@ CVA, not FX, IR swaps, equity derivs or general credit. Reasoning:
 | # | Module | Tool | Output | Status |
 |---|---|---|---|---|
 | 1 | Design | Stitch (vs Figma AI / v0) | 2–3 dashboard mockup variants (dense data table + filter panel) + one refined version, with a tool comparison note | Done |
-| 1b | Design | Stitch (design system, multi-screen, export) | Design system file, three screens (monitor, deep-dive, credit spread dashboard), prototype click-through, one screen built from a manual export | Planned |
+| 1b | Design | Stitch (design system, multi-screen, export) | Design system file, three screens (monitor, deep-dive, credit spread dashboard), prototype click-through, one screen built from a manual export | Done |
 | 1c | Design hand-off | Stitch MCP + Claude Code | The same screen pulled via MCP and compared with the 1b manual export | Planned |
 | 2 | Build | Replit Agent | Working React repo, scaffolded from the Stitch design + mock CVA data | Done |
 | 3 | Component testing | Storybook | Grid component isolated, 2–3 stories (empty / populated / error) | Done |
