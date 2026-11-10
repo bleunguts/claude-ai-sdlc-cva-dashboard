@@ -131,3 +131,59 @@ Possible colour issues, which I can’t confirm at this resolution.
 Negative MTM and CVA contribution values (for example -$1,210,000) may be red.
 DESIGN.md says breach red is not for negative values within policy.
 Zoom in and check.
+
+Iteration 3
+Prompt: 
+Using the attached design system (DESIGN.md), design a credit spread dashboard. Same terminal density as the CVA monitor: 26px rows, monospace right-aligned numerics. Use the same left-rail navigation and the name APEX RISK ANALYTICS as the CVA monitor. No telemetry ribbon, no KPI cards, no engine or simulation footer, no extra action buttons.
+
+Main table, columns only: Entity, Rating, Sector, 5Y Spread (bps), 1D Change (bps), 5D Change (bps), Proxy flag, and a “CVA” link. Spread changes: widening in amber with +, tightening in green with -. Breach red only for a 5Y spread above 200 bps. Use exactly these rows:
+
+Entity	Rating	Sector	5Y	1D	5D	Proxy
+BNP Paribas SA	A+	Financials	64.2	+0.8	+2.1	
+Deutsche Bank AG	BBB+	Financials	112.4	+3.4	+9.6	
+Republic of Italy	BBB	Sovereign	118.0	-2.2	-5.4	
+Federative Republic of Brazil	BB	Sovereign	205.0	+6.8	+14.5	
+Toyota Motor Corp	A+	Consumer Discretionary	38.5	+0.1	-0.4	
+Petróleo Brasileiro SA	BB	Energy	290.5	+8.9	+21.3	
+Trafigura Group	NR	Materials	140.0	+3.0	+8.0	PROXY
+
+Below the table, one term structure chart for the selected name (BNP Paribas SA) with exactly these tenors and spreads in bps: 6M 28.9, 1Y 37.2, 3Y 54.6, 5Y 64.2, 7Y 69.3, 10Y 73.2. Add a “View CVA charge” link beside the chart title. Nothing else.Using the attached design system (DESIGN.md), design a credit spread dashboard. Same terminal density as the CVA monitor: 26px rows, monospace right-aligned numerics. Use the same left-rail navigation and the name APEX RISK ANALYTICS as the CVA monitor. No telemetry ribbon, no KPI cards, no engine or simulation footer, no extra action buttons.
+
+Main table, columns only: Entity, Rating, Sector, 5Y Spread (bps), 1D Change (bps), 5D Change (bps), Proxy flag, and a “CVA” link. Spread changes: widening in amber with +, tightening in green with -. Breach red only for a 5Y spread above 200 bps. Use exactly these rows:
+
+Entity	Rating	Sector	5Y	1D	5D	Proxy
+BNP Paribas SA	A+	Financials	64.2	+0.8	+2.1	
+Deutsche Bank AG	BBB+	Financials	112.4	+3.4	+9.6	
+Republic of Italy	BBB	Sovereign	118.0	-2.2	-5.4	
+Federative Republic of Brazil	BB	Sovereign	205.0	+6.8	+14.5	
+Toyota Motor Corp	A+	Consumer Discretionary	38.5	+0.1	-0.4	
+Petróleo Brasileiro SA	BB	Energy	290.5	+8.9	+21.3	
+Trafigura Group	NR	Materials	140.0	+3.0	+8.0	PROXY
+
+Below the table, one term structure chart for the selected name (BNP Paribas SA) with exactly these tenors and spreads in bps: 6M 28.9, 1Y 37.2, 3Y 54.6, 5Y 64.2, 7Y 69.3, 10Y 73.2. Add a “View CVA charge” link beside the chart title. Nothing else.
+
+Result:
+Matches the prompt and design system
+
+Nav and brand: left rail, APEX RISK ANALYTICS, and no ribbon, KPI cards, footer or extra buttons. The deep-dive’s scope drift is gone.
+Data: all seven rows match exactly, and the term structure values (28.9, 37.2, 54.6, 64.2, 69.3, 73.2) are correct.
+Colour rules:
+Widening is amber and tightening is green. Italy and Toyota’s 5D are green.
+Breach red appears only on Brazil (205) and Petrobras (290.5).
+Components: the PROXY chip is on Trafigura only, the others show a dash, and the rating chips are neutral.
+Link back to CVA: the CVA column links and “View CVA charge” are both there.
+Selected row: BNP is highlighted blue and matches the chart title.
+
+Drift to log (minor)
+
+Chart scale: the 200 bps limit line stretches the y-axis to 0–200, which squashes BNP’s curve into the bottom third. The “LIMIT 200 bps” label is also clipped at the right edge.
+Nav item changed: “Credit Spreads” is active and there is no “Dashboard” item, so the monitor and credit screens don’t share a visible nav entry. This matters for the prototype click-through. Check both screens can link to each other.
+Breach rows are tinted: the full row gets a pink background, whereas the monitor only colours the value red. That is allowed by DESIGN.md (breach-red-bg), but it differs from the monitor.
+Legend: it seems to print a raw hex code next to “5Y Benchmark Curve”, which shouldn’t be user-facing. I can’t read it at this resolution, so zoom to confirm.
+Header row: “5D CHANGE (BPS)” wraps to two lines, so the header is taller than the 24px spec.
+Row height: I can’t verify the 26px from the screenshot.
+
+Retro
+
+Listing the exclusions and the exact rows, with the lessons from the deep-dive baked in, got you near-zero drift.
+The deep-dive prompt described what to include. This one also said what to leave out, and gave the data, which is the difference.
