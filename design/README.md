@@ -210,3 +210,46 @@ Screens: [UI-stitch-deepdive.jpg](UI-stitch-deepdive.jpg), [UI-stitch-credit.jpg
 - **Stitch features verified hands-on:** DESIGN.md generation, prototype click-through, and element-level edit all exist. The generated prototype let me click through from the credit dashboard to the CVA screen and into the counterparty drill-down (iteration 4).
 - **Route A:** the export is a good visual spec, not a component. Most of the Claude Code work was the data layer and behaviour around it. Module 1c will test whether the MCP route closes that gap.
 - **Bank context:** real use would need InfoSec and data-governance approval, and synthetic data only, as here.
+
+## Route B: claude mcp export
+
+## Retro (Module 1c)
+Finding: MCP returns the same HTML as the manual export, apart from whitespace.
+Caveat: the HTML is retyped by the model, since it comes back inline with no direct-to-disk path. It matched this time, but nothing guarantees it will on a larger screen. The screenshot and the design-system list are saved by the harness and are exact.
+Minor: the screenshot is 1600×1280, while the listing says 2560×2048.
+
+Stale Design files confusion:
+Stitch holds three DESIGN.md screens, A (no section 7), B (newest) and C (older than B). Record their ids.
+Titles alone don’t identify the current one. You identified B by diffing its content, not by name or by any MCP field.
+Ask Claude whether list_screens or get_screen returns a timestamp or version that would have told you. If so, say which field; if not, note the gap.
+
+## Prompt:
+Build a React component `CreditSpreadGridB` for the credit spread dashboard, using the Stitch MCP tools to pull the inputs.
+
+Inputs (pull via MCP, read-only, don't edit anything in Stitch):
+- Layout reference: the desktop "Credit Spread Dashboard" screen's HTML in project "Terminal Density Design System".
+- Design system: the newest DESIGN.md screen (the one with section 7, 7Y/10Y tenors, no MAP). Say which screen id you used and why.
+- Save the pulled files outside the repo and read them from disk, not from memory.
+
+Component:
+- Props-driven: `rows` (shape of `design/mock-credit.json`), optional `selectedLei`, `onSelect`, `cvaHref`. No data fetching, no new dependencies.
+- Table columns: Entity, Rating, Sector, 5Y spread (bps), 1D change, 5D change, Proxy, CVA link.
+- 26px rows and header, monospace right-aligned numerics.
+- Widening changes amber with +, tightening green with -. Breach red only for a 5Y spread above 200 bps.
+- PROXY chip only where `proxy` is true.
+- Below the table, a term structure chart for the selected row, with a 200 bps limit line and a "View CVA charge" link.
+- Empty state when `rows` is empty.
+- Follow the `CvaGrid` pattern for `data-testid` attributes.
+
+Styling:
+- Take every colour, font and spacing value from DESIGN.md as CSS variables named after its tokens. No hard-coded hex in the component CSS.
+- At the end, list which tokens you used and any value you had to hard-code, with the reason.
+
+Done when: typecheck is clean, a Storybook story (Empty, Populated) renders without console errors, and the component is not wired into App.tsx.
+
+## Result:
+Fidelity: the component renders correctly, with one visible divergence. The PROXY chip is slate where the Stitch layout uses cobalt. Claude chose the neutral variant from DESIGN.md over the layout HTML, so design tokens and layout HTML disagreed with each other. Decide which you consider right.
+Tokens vs hard-coded: 17 of 18 colours come from tokens. The exceptions are --rating-text (#334155, given only in DESIGN.md’s prose), the 12px panel padding, and the bold weight on breach values. Those are gaps in DESIGN.md, not in Claude’s work.
+Screen choice: Claude picked screen 8637484283435303626 on content and said Stitch gives no timestamps. That matches your own finding that nothing marks the latest one.
+Retyping: both pulled files were retyped, and both matched your Route A copies apart from whitespace.
+
