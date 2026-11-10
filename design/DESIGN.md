@@ -110,7 +110,7 @@ Single unified institutional palette matching core terminal specifications:
 
 ### B. Proxy-Flag Chip
 - For counterparties where direct CDS contracts are illiquid and pricing is derived via sector/rating curve proxies:
-  - Display a compact micro-chip labeled **`PROXY`** or **`MAP`**.
+  - Display a compact micro-chip labeled **`PROXY`**.
   - **Dimensions & Style:** Height `14px`, padding `px-1`, font-size `9px`, `font-mono font-bold tracking-wider`, rounded `2px`.
   - **Color:** Neutral Slate (`bg-[#F1F5F9]`, text `#475569`, border `1px solid #CBD5E1`), or subtle Cobalt outline (`text-[#1D4ED8] bg-[#EFF6FF] border-[#BFDBFE]`).
 
@@ -120,10 +120,10 @@ Single unified institutional palette matching core terminal specifications:
 - **Treatment:** Displayed within a minimal neutral pill (`bg-[#F1F5F9] px-1.5 py-0.5 rounded-[2px] border border-[#E2E8F0]`).
 
 ### D. Term Structure Chart Line Colours
-For multi-tenor CDS curves (6M, 1Y, 2Y, 3Y, 5Y, 7Y, 10Y, 30Y) plotted within term structure drawer/sparkline views:
+For multi-tenor CDS curves (6M, 1Y, 3Y, 5Y, 7Y, 10Y) plotted within term structure drawer/sparkline views:
 - **Active / Benchmark Curve (5Y):** Cobalt Blue `#1D4ED8` (solid 1.5px line).
 - **Secondary Tenors (1Y / 3Y):** Slate Gray `#64748B` (1px line, 70% opacity).
-- **Long Tenors (10Y / 30Y):** Dark Navy `#0F172A` (1px line, 85% opacity).
+- **Long Tenors (7Y / 10Y):** Dark Navy `#0F172A` (1px line, 85% opacity).
 - **Proxy Curve Comparison:** Cobalt dashed line `#1D4ED8` (`stroke-dasharray: 3, 3`).
 - **Historical EOD Baseline:** Muted Slate `#94A3B8` (dotted 1px line).
 - **Breach Threshold Line:** Horizontal alert line in `#DC2626` (1px dashed at 200 bps).

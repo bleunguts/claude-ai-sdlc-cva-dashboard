@@ -41,7 +41,7 @@
 - **LEIs:** seven copied from the mockups, the rest random 20-character codes. Not real LEIs.
 
 ## Module 1b: Design - Stitch
-
+Iteration 1
 Prompt #1: 
 Create a design system from this screen: colours, type scale, 26px row density, monospace right-aligned numerics, red only for breaches. Keep terminal density, not consumer SaaS.
 
@@ -107,3 +107,6 @@ Long Tenors (10Y/30Y): Navy #0F172A (1px, 85% opacity)
 Proxy Curve: Cobalt dashed #1D4ED8
 Historical EOD Baseline: Muted Slate #94A3B8 (1px dotted)
 Breach Threshold Line: Red dashed #DC2626 at 200 bps.
+
+Iteration 2
+v2.1: hand-edited tenors to match mock data and fixed the PROXY label. Cheaper to hand-edit than to re-prompt.
