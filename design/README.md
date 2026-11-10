@@ -187,3 +187,7 @@ Retro
 
 Listing the exclusions and the exact rows, with the lessons from the deep-dive baked in, got you near-zero drift.
 The deep-dive prompt described what to include. This one also said what to leave out, and gave the data, which is the difference.
+
+Iteration 4
+Prototype worked, home screen is the Credit dashboard I can navigate to CVA dashboard via CVA column links and CVA Page link.  I can click on the counterparty and drill down into the detail.
+
