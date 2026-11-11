@@ -218,10 +218,11 @@ Finding: MCP returns the same HTML as the manual export, apart from whitespace.
 Caveat: the HTML is retyped by the model, since it comes back inline with no direct-to-disk path. It matched this time, but nothing guarantees it will on a larger screen. The screenshot and the design-system list are saved by the harness and are exact.
 Minor: the screenshot is 1600×1280, while the listing says 2560×2048.
 
-Stale Design files confusion:
-Stitch holds three DESIGN.md screens, A (no section 7), B (newest) and C (older than B). Record their ids.
-Titles alone don’t identify the current one. You identified B by diffing its content, not by name or by any MCP field.
-Ask Claude whether list_screens or get_screen returns a timestamp or version that would have told you. If so, say which field; if not, note the gap.
+Stale DESIGN.md screens:
+- Stitch held three DESIGN.md screens: `8f8346c1a38b42ec9eb87f056dfa4305` (no section 7), `b6dbaaac855841ed9287eafa3e3005df` ("DESIGN.md (Revised)", has PROXY or MAP and a 30Y tenor) and `8637484283435303626` (newest, matches the committed v2.1). The Step 6b edit added a fourth, `3252c79acdd94e70a367d5c6e55a160b`.
+- Titles do not identify the current one. I picked `8637…` by diffing content, not by name or by any MCP field.
+- `list_screens` returns only id, title, device type, size and download links. There is no timestamp or version, so the MCP gives no way to tell which copy is current.
+- Resolved (#30): the three non-canonical copies were deleted in the Stitch UI. `8637484283435303626` is the canonical DESIGN.md, and the screens' breach colour was put back to `#DC2626`, confirmed by re-pulling the Credit Spread Dashboard. The revert is written as inline styles, so the HTML differs from the original but stays hard-coded hex.
 
 ## Prompt:
 Build a React component `CreditSpreadGridB` for the credit spread dashboard, using the Stitch MCP tools to pull the inputs.
