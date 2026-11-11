@@ -24,7 +24,7 @@ CVA, not FX, IR swaps, equity derivs or general credit. Reasoning:
 | 4 | E2E testing | Playwright | One passing test: load dashboard, apply filter, assert row(s) | Done |
 | 5 | Review | CodeRabbit | PR with a real AI review thread on an intentionally rough edge | Blocked: PR #21 open, CodeRabbit silent |
 | 6 | Docs | Notion AI | One-pager: problem, approach, stack, what you'd change next time | Done |
-| 7 | Design to build | Claude Code (Stitch output) | Credit spread screen wired into the app with a click-through to the CVA monitor, design hand-off gaps closed, Playwright coverage | Planned (issue #32) |
+| 7 | Design to build | Claude Code (Stitch output) | Credit spread screen wired into the app with a click-through to the CVA monitor, design hand-off gaps closed, Playwright coverage | Done |
 
 ## How it is built
 

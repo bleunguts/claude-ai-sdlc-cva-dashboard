@@ -29,3 +29,14 @@ test('credit screen flags breach rows and PROXY chips from the data', async ({ p
   expect(breachLeis).toHaveLength(2);
   expect(proxyLeis).toHaveLength(2);
 });
+
+test('selecting a row updates the term structure chart', async ({ page }) => {
+  await page.goto('/');
+  const target = credit.find((r) => r.counterparty.startsWith('Petr'))!;
+
+  await page.getByTestId(`select-credit-b-${target.lei}`).click();
+
+  const panel = page.getByTestId('credit-b-term-structure');
+  await expect(panel).toContainText(target.counterparty);
+  await expect(panel).toContainText(target.spread5yBps.toFixed(1)); // 5Y point label
+});

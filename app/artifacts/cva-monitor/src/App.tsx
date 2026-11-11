@@ -1,6 +1,7 @@
 import { Link, Route, Switch } from 'wouter';
 import CvaMonitor from './pages/CvaMonitor';
 import CreditSpreads from './pages/CreditSpreads';
+import Counterparty from './pages/Counterparty';
 
 export default function App() {
   return (
@@ -11,7 +12,8 @@ export default function App() {
       </nav>
       <Switch>
         <Route path="/" component={CreditSpreads} />
-        <Route path="/cva" component={CvaMonitor} />        
+        <Route path="/cva" component={CvaMonitor} />
+        <Route path="/counterparty/:lei">{(params) => <Counterparty lei={params.lei} />}</Route>        
         <Route>Not found</Route>
       </Switch>
     </>

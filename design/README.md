@@ -293,3 +293,15 @@ Same screen (desktop Credit Spread Dashboard, project 1964730459358180397), same
 - **Pin and record.** Tokens file header names the screen id; the generator fails loudly if it does not find 18 colours and 6 type styles.
 - **When I would use each.** Route A when I need a committed, reproducible snapshot, or the tool is not allowed to talk to the design source. Route B when the design system is actively changing and I can pin the screen. At a bank, B also needs InfoSec approval for the key and the outbound connection.
 - **Prompt lesson.** Naming the exact screens, asking for files to be read from disk, and requiring a token usage report made the build checkable. Without the report I could not have verified "no hard-coded values".
+
+## Module 7: decisions
+
+**Component: Route B (`CreditSpreadGridB`).** Deciding criteria: 17 of 18 colours come from DESIGN.md tokens via `scripts/gen-tokens.mjs`, so a design-system change is a one-command, 3-line diff; A needs hand-edited hex. Cost accepted: the pulled DESIGN.md depends on Stitch and needs pinning. `CreditSpreadGrid` (A) stays as a reference and Storybook comparison.
+
+**Canonical sources:** Stitch project `1964730459358180397`, screen `8637484283435303626`; DESIGN.md as committed at `design/DESIGN.md` (generator output header names the screen id). Edits in Stitch create new screens, so re-pin before pulling.
+
+| Gap | Decision |
+|---|---|
+| PROXY chip | Slate, per DESIGN.md. The layout HTML (cobalt) is the stale one. |
+| Fonts | Inter and JetBrains Mono now loaded for B. CVA page keeps DM Mono (accepted inconsistency). |
+| Chart scale | Axis scales to the data, never below 200 bps; limit line always shown. |
