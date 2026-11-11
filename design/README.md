@@ -36,7 +36,7 @@
 - Figma Make drifted from the source design in typography and density. Re-prompting with explicit constraints (font family, row height) would be the fix.
 
 ## Decisions carried into Module 2
-- **Chosen design:** the light variant, [UI-stitch.jpg](UI-stitch.jpg). The dark terminal variant ([UI-stitch-professional-dark-theme.jpg.jpg](UI-stitch-professional-dark-theme.jpg.jpg)) is reference only, not a build target. 
+- **Chosen design:** the light variant, [UI-stitch.jpg](UI-stitch.jpg). The dark terminal variant ([UI-stitch-professional-dark-theme.jpg](UI-stitch-professional-dark-theme.jpg)) is reference only, not a build target. 
 - **Mock data:** [mock-data.json](mock-data.json), 20 rows. `cdsSpreadBps` is the 5Y reference CDS spread; `tenor` is the maturity of the exposure with that counterparty, not a CDS tenor. `cvaCharge` is a static mock value (derived once from spread x exposure x tenor, not computed at runtime). `null` spread/CVA on Trafigura and two stale timestamps (Toyota, Siemens) are deliberate edge cases for Module 3.
 - **LEIs:** seven copied from the mockups, the rest random 20-character codes. Not real LEIs.
 
@@ -147,19 +147,6 @@ Toyota Motor Corp	A+	Consumer Discretionary	38.5	+0.1	-0.4
 Petróleo Brasileiro SA	BB	Energy	290.5	+8.9	+21.3	
 Trafigura Group	NR	Materials	140.0	+3.0	+8.0	PROXY
 
-Below the table, one term structure chart for the selected name (BNP Paribas SA) with exactly these tenors and spreads in bps: 6M 28.9, 1Y 37.2, 3Y 54.6, 5Y 64.2, 7Y 69.3, 10Y 73.2. Add a “View CVA charge” link beside the chart title. Nothing else.Using the attached design system (DESIGN.md), design a credit spread dashboard. Same terminal density as the CVA monitor: 26px rows, monospace right-aligned numerics. Use the same left-rail navigation and the name APEX RISK ANALYTICS as the CVA monitor. No telemetry ribbon, no KPI cards, no engine or simulation footer, no extra action buttons.
-
-Main table, columns only: Entity, Rating, Sector, 5Y Spread (bps), 1D Change (bps), 5D Change (bps), Proxy flag, and a “CVA” link. Spread changes: widening in amber with +, tightening in green with -. Breach red only for a 5Y spread above 200 bps. Use exactly these rows:
-
-Entity	Rating	Sector	5Y	1D	5D	Proxy
-BNP Paribas SA	A+	Financials	64.2	+0.8	+2.1	
-Deutsche Bank AG	BBB+	Financials	112.4	+3.4	+9.6	
-Republic of Italy	BBB	Sovereign	118.0	-2.2	-5.4	
-Federative Republic of Brazil	BB	Sovereign	205.0	+6.8	+14.5	
-Toyota Motor Corp	A+	Consumer Discretionary	38.5	+0.1	-0.4	
-Petróleo Brasileiro SA	BB	Energy	290.5	+8.9	+21.3	
-Trafigura Group	NR	Materials	140.0	+3.0	+8.0	PROXY
-
 Below the table, one term structure chart for the selected name (BNP Paribas SA) with exactly these tenors and spreads in bps: 6M 28.9, 1Y 37.2, 3Y 54.6, 5Y 64.2, 7Y 69.3, 10Y 73.2. Add a “View CVA charge” link beside the chart title. Nothing else.
 
 Result:
@@ -198,7 +185,7 @@ Prototype worked, home screen is the Credit dashboard I can navigate to CVA dash
 - **Checks:** typecheck clean before and after. In Storybook the Populated story renders all 20 rows, rows and header measure 26px, breach red shows on Brazil and Petrobras only, PROXY shows on Vitol and Trafigura, and selecting a row updates the term structure. No console errors.
 - **What the export gave:** exact colours, the 26px rule and the chart geometry. The HTML is hard-coded for 7 rows and one curve, so selection, thresholds and the data layer had to be written, not translated.
 - **What changed in translation:** Tailwind classes became plain CSS to match `CvaGrid`, and the chart is inline SVG computed from data rather than fixed coordinates.
-- **Known gaps:** I kept the export's 0 to 200 bps axis, so low-spread curves still look flat (drift 1 under iteration 3). The app loads DM Mono, not the Inter and JetBrains Mono from DESIGN.md, so numerics render in DM Mono.
+- **Known gaps:** I kept the export's 0 to 200 bps axis, so low-spread curves still look flat (drift 1 under iteration 3). The app loads DM Mono, not the Inter and JetBrains Mono from DESIGN.md, so numerics render in DM Mono. (Fixed for Route B in Module 7: Inter and JetBrains Mono are now loaded; this Route A component still uses DM Mono.)
 
 ## Evidence
 Screens: [UI-stitch-deepdive.jpg](UI-stitch-deepdive.jpg), [UI-stitch-credit.jpg](UI-stitch-credit.jpg), [UI-stitch-credit-edit.jpg](UI-stitch-credit-edit.jpg) (after the element-level edit). Prototype: [prototype-clickthrough.gif](prototype-clickthrough.gif), [prototype-1-monitor.jpg](prototype-1-monitor.jpg), [prototype-1-cva.jpg](prototype-1-cva.jpg).
@@ -212,6 +199,7 @@ Screens: [UI-stitch-deepdive.jpg](UI-stitch-deepdive.jpg), [UI-stitch-credit.jpg
 - **Bank context:** real use would need InfoSec and data-governance approval, and synthetic data only, as here.
 
 ## Route B: claude mcp export
+Prompt, result and findings below; the Route A vs Route B comparison follows.
 
 ## Retro (Module 1c)
 Finding: MCP returns the same HTML as the manual export, apart from whitespace.
@@ -268,7 +256,7 @@ The screen edit changed only the HTML, with hard-coded hex, and DESIGN.md didn�
 “Edit with AI” on DESIGN.md created a new screen (3252c79a…) instead of editing 8637…, so anything pinned to the old id never sees it. If your own diff showed the tenor lines or wording drifting, add that.
 Regenerating tokens from the new file changed only the 3 expected lines.
 Propagating changed the file ids of three desktop screens, including two you didn’t open, but not the mobile ones.
-Divergences in Route B’s build: grey PROXY chip vs the layout’s cobalt one, fonts falling back to system fonts, tokens that DESIGN.md gives only in prose.
+Divergences in Route B’s build: grey PROXY chip vs the layout’s cobalt one, fonts falling back to system fonts (fixed in Module 7), tokens that DESIGN.md gives only in prose.
 Setup time and what you had to work out yourself (the official docs wouldn’t load, the key, user scope).
 
 ## Route A vs Route B (Module 1c)
@@ -277,7 +265,7 @@ Same screen (desktop Credit Spread Dashboard, project 1964730459358180397), same
 
 | Criterion | Route A: manual export | Route B: Stitch MCP |
 |---|---|---|
-| Fidelity | Renders all rows, 26px rows, breach red on Brazil and Petrobras only. Cobalt PROXY chip matches the layout HTML. Kept the export's fixed 0 to 200 bps axis. | Same rows and rules (22/22 browser checks). PROXY chip is neutral slate: DESIGN.md and the layout HTML disagree and Claude followed DESIGN.md. Axis scales above 200. Inter and JetBrains Mono not loaded (app ships DM Mono only). |
+| Fidelity | Renders all rows, 26px rows, breach red on Brazil and Petrobras only. Cobalt PROXY chip matches the layout HTML. Kept the export's fixed 0 to 200 bps axis. | Same rows and rules (22/22 browser checks). PROXY chip is neutral slate: DESIGN.md and the layout HTML disagree and Claude followed DESIGN.md. Axis scales above 200. Inter and JetBrains Mono not loaded (app ships DM Mono only). (Fixed in Module 7: both fonts now loaded.) |
 | Tokens vs hard-coded | Tailwind classes translated to plain CSS with local colour variables; hex values written by hand. | 17 of 18 colours come from tokens generated from DESIGN.md; component CSS has no hex. Hard-coded: `--rating-text` (`#334155`, prose only in DESIGN.md), 12px panel padding, bold breach weight. |
 | Manual steps | Export HTML and screenshot, copy DESIGN.md by hand, repeat per change. | One-off: create key, `claude mcp add` at user scope. Per pull: pick the right screen, model writes the HTML to disk, run the generator. |
 | After a screen edit | Re-export and hand-edit CSS. | Re-pull shows the change in the HTML (red to purple, tint, limit line), but DESIGN.md and so the tokens do not change. |
@@ -293,3 +281,15 @@ Same screen (desktop Credit Spread Dashboard, project 1964730459358180397), same
 - **Pin and record.** Tokens file header names the screen id; the generator fails loudly if it does not find 18 colours and 6 type styles.
 - **When I would use each.** Route A when I need a committed, reproducible snapshot, or the tool is not allowed to talk to the design source. Route B when the design system is actively changing and I can pin the screen. At a bank, B also needs InfoSec approval for the key and the outbound connection.
 - **Prompt lesson.** Naming the exact screens, asking for files to be read from disk, and requiring a token usage report made the build checkable. Without the report I could not have verified "no hard-coded values".
+
+## Module 7: decisions
+
+**Component: Route B (`CreditSpreadGridB`).** Deciding criteria: 17 of 18 colours come from DESIGN.md tokens via `scripts/gen-tokens.mjs`, so a design-system change is a one-command, 3-line diff; A needs hand-edited hex. Cost accepted: the pulled DESIGN.md depends on Stitch and needs pinning. `CreditSpreadGrid` (A) stays as a reference and Storybook comparison.
+
+**Canonical sources:** Stitch project `1964730459358180397`, screen `8637484283435303626`; DESIGN.md as committed at `design/DESIGN.md` (generator output header names the screen id). Edits in Stitch create new screens, so re-pin before pulling.
+
+| Gap | Decision |
+|---|---|
+| PROXY chip | Slate, per DESIGN.md. The layout HTML (cobalt) is the stale one. |
+| Fonts | Inter and JetBrains Mono now loaded for B. CVA page keeps DM Mono (accepted inconsistency). |
+| Chart scale | Axis scales to the data, never below 200 bps; limit line always shown. |

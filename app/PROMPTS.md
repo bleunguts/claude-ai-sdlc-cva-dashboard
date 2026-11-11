@@ -1,3 +1,25 @@
+# Modules 1, 1b, 1c: Design — Stitch (index)
+
+The full prompt logs, results and retros for the Stitch modules live in [`design/README.md`](../design/README.md), not here. This index lists every prompt once so the log reads end to end; follow the section link for the verbatim prompt, result and critique.
+
+| Module | # | Prompt (summary) | Outcome | Full text |
+|---|---|---|---|---|
+| 1 | 1 | Starter prompt (ROADMAP.md): CVA charge monitor | Very detailed, extra nav and chrome. Baseline; exceeded scope. | [Prompt log](../design/README.md#prompt-log) |
+| 1 | 2 | Stitch suggestion: counterparty deep-dive (BNP Paribas SA) | Explored only; out of scope for the one-table MVP. | same |
+| 1 | 3 | Remove unused nav and KPI cards; five columns only; 26px rows, monospace right-aligned numerics, 1px gridlines | Light table-focused monitor (`UI-stitch.jpg`), the chosen build target. | same |
+| 1 | 4 | Dark Bloomberg-style terminal theme | `UI-stitch-professional-dark-theme.jpg`; reference only. | same |
+| 1b | 1 | Create a design system (colours, type scale, 26px density, red only for breaches) | DESIGN.md with two conflicting palettes, a CVA threshold that would turn most rows red, and Module 1 scope creep. | [Module 1b](../design/README.md#module-1b-design---stitch) |
+| 1b | 2 | Revise DESIGN.md with four numbered fixes (one palette, $5M CVA threshold, remove ribbon/nav dock, add spread-change / proxy chip / rating / chart-line rules) | Clean design system; tenors and PROXY label hand-edited afterwards (v2.1). | same |
+| 1b | 3 | Deep-dive screen from DESIGN.md (BNP Paribas SA) | Over-scoped: two tables, engine telemetry, top-tab nav, CVA figures not matching `mock-data.json`. Not built (issue #34). | same |
+| 1b | 4 | Credit spread dashboard with explicit exclusions and exact rows and tenors | Near-zero drift. Retro: say what to leave out and give the data. | same |
+| 1b | 5 | Prototype click-through plus one element-level edit | Credit -> CVA -> counterparty drill-down worked in the prototype. | same |
+| 1c | 1 | Build `CreditSpreadGridB` pulling inputs through the Stitch MCP (files read from disk, token usage report required) | Matched Route A apart from whitespace; PROXY chip slate vs cobalt, fonts fell back. | [Route B](../design/README.md#route-b-claude-mcp-export) |
+| 1c | 2 | Design-system edit: set breach-red to `#EA580C` | "Edit with AI" created a new screen; generator changed 3 lines. Reverted to `#DC2626` in #30. | [Step 6b](../design/README.md#step-6b-design-system-edit-in-stitch) |
+
+Retros: [Module 1](../design/README.md#retro), [1b](../design/README.md#retro-module-1b), [1c](../design/README.md#retro-module-1c-summary). Module 7 decisions (component choice, canonical Stitch screen, reconciliations): [design/README.md](../design/README.md#module-7-decisions).
+
+---
+
 # Module 2: Build — Replit Agent
 
 Prompt log and retro. Inputs were `design/UI-stitch.jpg`, `design/mock-data.json` and `prompt.md` (see `replit-inputs.zip` in the repo root).
@@ -127,3 +149,40 @@ Issue #17. Output: [`docs/cva-dashboard-onepager.md`](../docs/cva-dashboard-onep
 - **Inputs as the lever:** the notes carried the honesty (Module 5 blocked, "no review results exist, so none may be claimed"). The output stayed honest because the input was.
 - **Export:** Markdown survived (tables included). The PDF exports were removed because they contained the uncorrected text; re-export from Notion after the fix if a PDF is wanted. Two duplicate exports of the inputs page were removed as redundant with `notion-inputs.md`.
 - **Confidentiality:** the one-pager keeps to generic domain depth; no detail from prior roles.
+
+---
+
+# Module 7: Wire the credit screen into the app
+
+Issue #32 (deep-dive split out to #34). Mentor-style session: Claude coached, then supplied code on request; the user applied it, ran it and committed. Outputs: `src/pages/CvaMonitor.tsx`, `CreditSpreads.tsx`, `Counterparty.tsx` (stub), wouter routes in `src/App.tsx`, and four e2e specs in `app/artifacts/cva-monitor/e2e/`. Decisions are recorded in `design/README.md` ("Module 7: decisions").
+
+## Prompt log
+| # | Prompt | Result | What changed and why |
+|---|---|---|---|
+| 1 | "Start Module 7: wire the credit screen into the app" | Claude read the issue and ROADMAP, took a green baseline (typecheck, build, 1 e2e), chose Route B, then drafted the full wiring (hash routes, nav, fonts, two specs) in one go. One of its own tests failed (asserted a selected row survived Back; selection is component state and resets on remount). | **Rejected by the user:** "Don't implement anything, I want to do it as a tutorial." Draft stashed, never applied. Lesson: a tutorial module needs the mentor role stated up front. |
+| 2 | "Focus on the minimal viable product, the simplest thing, even if hacky... do I still need to decide A vs B?" | Yes, but cheaply: B by default (tokens from DESIGN.md), write-up deferred. Hints only. | Scoping the first iteration down made the real decision (router) visible. |
+| 3 | "Give me the code" (state-flag version) | A `screen` state plus a click handler intercepting `#cva=` anchors. | **Rejected:** "I don't like that." The hack leaked routing concerns into `App` and would have broken Back and deep links. |
+| 4 | "What is the proper way, is it routers? I might be changing the UI a lot, I don't want lumpy architecture" | Claude checked `package.json` first: `wouter` was already a dependency (Replit scaffold). Pages in `src/pages/`, thin `App` shell, filter seeded from `?counterparty=`. | Adopted. The "proper" answer was already installed. |
+| 5 | "Give me the code for the Playwright test" | Two click-through tests. User's run: both **timed out** on `getByTestId(...)`. | The page snapshot showed "Not found". The user's own routes had credit at `/` and CVA at `/cva`; Claude had assumed the reverse and used `/credit`. Fixed the test URLs, not the app. |
+| 6 | "Create the test file" (credit screen) | Breach rows and PROXY chips derived from `mock-credit.json`, plus vacuous-pass guards (`toHaveLength(2)`). Row-selection test added later. | Passed first run. |
+| 7 | "Do 2 to raise it the proper way, and 3 at the end as a tactical plug" | Issue #34 (deep-dive) raised; stub route `/counterparty/:lei` and one link from the CVA monitor, with its own test. | Out-of-scope work went to a new issue, not into #32's design scope. |
+
+## Evidence
+Final run: all e2e specs pass (`npm run test:e2e` from `app/artifacts/cva-monitor`). New specs: `credit-clickthrough.spec.ts` (2 tests), `credit-screen.spec.ts` (2), `counterparty.spec.ts` (1), alongside Module 4's `cva-filter.spec.ts`.
+
+Deliberate breaks, each to be seen red then reverted (**confirm which you ran and paste the failure line**):
+- `?counterparty=` renamed in `CreditSpreads.tsx` -> both click-through tests fail.
+- "View CVA charge" using `rows[0]` instead of the selected row -> only the charge-link test fails.
+- `BREACH_BPS` 200 -> 100 -> breach assertion fails. `row.proxy` condition removed -> PROXY count fails.
+- `select()` no longer setting the active row -> row-selection test fails.
+- Stub link `href` changed -> `counterparty.spec.ts` fails.
+
+## Retro
+- **Why the mentor framing mattered:** the first prompt got a complete implementation, which was the wrong deliverable for a tutorial. Stating the role ("hints, I'll type it") changed everything that followed.
+- **Why "simplest, even hacky" then "what is the proper way" worked:** the hack showed what a router would replace. Without it, "use a router" is advice; with it, the user could say why they did not want the alternative.
+- **Check the project before recommending:** `wouter` was already installed and `pages/` existed. Recommending a library without looking would have added a dependency for nothing.
+- **A test failure can be the test's assumption, not the app:** routes written from my plan rather than the user's actual `App.tsx` produced "Not found". The page snapshot (`error-context.md`) found it in one read; the lesson is to read the real routes before writing selectors or URLs.
+- **Expected values from the data:** every new spec reads `src/data/*.json`. Vacuous-pass guards (`toHaveLength(2)`) stop a loop over zero breach rows passing silently.
+- **Reconciliation was mostly recording, not coding:** two of three design gaps (PROXY colour, chart scale) needed no code change, only a decision. Fonts was one line in `index.html`.
+- **A constraint was changed on purpose:** Module 2's prompt said "no routing". Module 7 needs two screens, so wouter (already a dependency from the Replit scaffold) now routes `/` (credit), `/cva` and `/counterparty/:lei`. Recorded here and in issue #32's risks so the earlier constraint is not silently contradicted.
+- **Known gaps:** B's links are plain `<a>`, so navigation does a full reload; the CVA filter is seeded from the URL only on mount; fonts differ between screens (DM Mono vs Inter / JetBrains Mono); the stub is not the Stitch design (#34 replaces it).

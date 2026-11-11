@@ -1,7 +1,7 @@
 import {test, expect} from '@playwright/test';
 
 test('filtering by counterparty name narrows the table', async ({ page }) => {
-    await page.goto('/');
+    await page.goto('/cva');
 
     // 1. Full table loaded
     await expect(page.getByTestId('status-filtered-summary')).toContainText('20 of 20');

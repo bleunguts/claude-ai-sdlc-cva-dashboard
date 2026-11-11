@@ -119,8 +119,9 @@ export function CvaGrid({ rows }: CvaGridProps) {
             </tr>
           ) : sortedRows.map((row) => (
             <tr key={`${row.lei}-${row.timestamp}`} data-testid={`row-counterparty-${row.lei}`}>
-              <td className="counterparty-cell" title={row.counterparty}>
-                {row.counterparty}<span className="lei">{row.lei}</span>
+              <td className="counterparty-cell" title={row.counterparty}>                
+                <a href={`/counterparty/${row.lei}`} data-testid={`link-detail-${row.lei}`}>{row.counterparty}</a>
+                <span className="lei">{row.lei}</span>
               </td>
               <td className="bucket-cell">{row.bucket}</td>
               <td className={`numeric spread${row.cdsSpreadBps !== null && row.cdsSpreadBps > 150 ? ' threshold-alert' : ''}`}>{row.cdsSpreadBps === null ? '—' : row.cdsSpreadBps.toFixed(1)}</td>
