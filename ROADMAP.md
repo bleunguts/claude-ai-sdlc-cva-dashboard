@@ -2,7 +2,7 @@
 
 A six-module walkthrough of an AI-assisted SDLC, one tool per stage, run against a single small CVA monitoring dashboard. Each module's output is a concrete, interview-ready artefact — not just familiarity with a tool, but a demonstrated reason for picking it at that stage.
 
-**Status:** Modules 1 (Stitch), 1b (Stitch design system and multi-screen, `design/`), 1c (Stitch MCP vs manual export, `design/README.md`), 2 (Replit Agent), 3 (Storybook), 4 (Playwright) and 6 (Notion AI, `docs/cva-dashboard-onepager.md`) done. Artefacts in `design/`, `app/` and `app/artifacts/cva-monitor/src/CvaGrid.stories.tsx`. Module 5 (CodeRabbit) is **blocked**: PR #21 is open with the planted edge, but CodeRabbit never reviewed it (see `app/PROMPTS.md`); parked, Module 6 completed without it. Issues raised in advance: #15 (M4), #16 (M5), #17 (M6).
+**Status:** Modules 1 (Stitch), 1b (Stitch design system and multi-screen, `design/`), 1c (Stitch MCP vs manual export, `design/README.md`), 2 (Replit Agent), 3 (Storybook), 4 (Playwright) and 6 (Notion AI, `docs/cva-dashboard-onepager.md`) done. Artefacts in `design/`, `app/` and `app/artifacts/cva-monitor/src/CvaGrid.stories.tsx`. Module 5 (CodeRabbit) is **blocked**: PR #21 is open with the planted edge, but CodeRabbit never reviewed it (see `app/PROMPTS.md`); parked, Module 6 completed without it. Issues raised in advance: #15 (M4), #16 (M5), #17 (M6). Module 7 (wire the credit screen into the app) is planned, issue #32. Retro inputs for a deeper Notion AI write-up are in `docs/retro-inputs.md`.
 
 ## Domain choice
 
@@ -24,6 +24,7 @@ CVA, not FX, IR swaps, equity derivs or general credit. Reasoning:
 | 4 | E2E testing | Playwright | One passing test: load dashboard, apply filter, assert row(s) | Done |
 | 5 | Review | CodeRabbit | PR with a real AI review thread on an intentionally rough edge | Blocked: PR #21 open, CodeRabbit silent |
 | 6 | Docs | Notion AI | One-pager: problem, approach, stack, what you'd change next time | Done |
+| 7 | Design to build | Claude Code (Stitch output) | Credit spread screen wired into the app with a click-through to the CVA monitor, design hand-off gaps closed, Playwright coverage | Planned (issue #32) |
 
 ## How it is built
 
@@ -136,3 +137,13 @@ Issue: #17. **Learn:** turn project notes into a concise, accurate writeup for a
 **Critique checklist:** every claim true to the repo; per-stage "why this tool" present; honest about what went wrong; both narrative threads (CVA depth, AI upskilling) covered; one page.
 
 **Done when:** the one-pager is exported to `docs/`, fact-checked, with a prompt log and retro, and this table shows all six modules done.
+
+## Module 7: Wire the credit spread screen into the app (planned)
+
+Issue: #32. Depends on 1b, 1c and #30. Raised from the Module 6 one-pager's "close the design hand-off gaps" next step. **Learn:** carry a Stitch design from Storybook-only components into the running app, and decide between the manual-export (A) and MCP (B) components with evidence.
+
+**Scope:** pick A or B and record why; reconcile the PROXY chip colour (DESIGN.md slate vs layout cobalt), fonts (Inter / JetBrains Mono vs DM Mono) and chart scale (fixed 0 to 200 bps vs scaled axis); pin the canonical Stitch screen (`8637484283435303626`) and DESIGN.md version; add minimal two-screen navigation; wire the CVA column link and "View CVA charge" to the CVA monitor filtered to the counterparty; add Playwright tests for the credit screen and the click-through, with expectations derived from the mock JSON and a deliberate break to prove each can fail.
+
+**Out of scope:** real data or backend, Module 5, CI, the deep-dive screen, removing the Replit scaffold.
+
+**Done when:** both screens are reachable in the running app with the click-through working, the A or B choice and the three reconciliation decisions are recorded, new Playwright tests pass and were seen to fail, with prompt log, retro and updated status table.

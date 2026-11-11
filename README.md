@@ -10,6 +10,7 @@ Domain: CVA charge monitoring by counterparty, with CDS spreads as a pricing inp
 - **Playwright** — one E2E test: load, filter, assert
 - **CodeRabbit** — AI PR review on a deliberately rough-edged change
 - **Notion AI** — turns build notes into a portfolio writeup
+- **Module 7 (planned)** — wires the Stitch credit spread screen into the app and closes the design hand-off gaps (issue #32)
 
 See [ROADMAP.md](ROADMAP.md) for the module plan and current status.
 
