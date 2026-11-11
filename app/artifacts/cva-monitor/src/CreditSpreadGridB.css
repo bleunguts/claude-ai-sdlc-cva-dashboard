@@ -1,0 +1,170 @@
+/* Credit spread grid, Route B (Stitch MCP). Every colour, font and type value is a var() from CreditSpreadGridB.tokens.css. */
+.credit-b-shell {
+  background: var(--surface-base);
+  color: var(--text-primary);
+  font-family: var(--font-primary-ui-sans);
+  /* Panel gap and padding come from the Stitch layout HTML (p-3, space-y-3), not DESIGN.md. */
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.credit-b-table-wrap,
+.credit-b-term {
+  background: var(--surface-container);
+  border: 1px solid var(--surface-border);
+  border-radius: 2px;
+  overflow: auto;
+}
+
+.credit-b-table { border-collapse: collapse; width: 100%; }
+.credit-b-table th {
+  height: var(--row-height);
+  padding: var(--cell-padding-y) var(--cell-padding-x);
+  background: var(--surface-subtle);
+  color: var(--text-primary);
+  border-bottom: 1px solid var(--surface-border);
+  border-right: 1px solid var(--surface-border);
+  font-size: var(--body-header-size);
+  line-height: var(--body-header-line-height);
+  font-weight: var(--body-header-weight);
+  letter-spacing: var(--body-header-tracking);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.credit-b-table td {
+  height: var(--row-height);
+  padding: var(--cell-padding-y) var(--cell-padding-x);
+  border-bottom: 1px solid var(--surface-border);
+  border-right: 1px solid var(--surface-border);
+  font-size: var(--body-data-size);
+  line-height: var(--body-data-line-height);
+  white-space: nowrap;
+}
+.credit-b-table th:last-child,
+.credit-b-table td:last-child { border-right: 0; }
+.credit-b-table tbody tr { background: var(--surface-container); transition: background-color var(--row-hover-transition); }
+.credit-b-table tbody tr:hover { background: var(--accent-subtle); }
+.credit-b-table tbody tr.is-selected { background: var(--accent-subtle); box-shadow: inset 2px 0 0 var(--accent-primary); }
+.credit-b-table tbody tr.is-breach { background: var(--breach-red-bg); }
+
+.credit-b-left { text-align: left; }
+.credit-b-right { text-align: right; }
+.credit-b-center { text-align: center; }
+
+.credit-b-num {
+  font-family: var(--font-quantitative-data-monospace);
+  font-size: var(--mono-data-size);
+  line-height: var(--mono-data-line-height);
+  font-weight: var(--mono-data-weight);
+  letter-spacing: var(--mono-data-tracking);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" on, "zero" on;
+}
+.credit-b-spread { color: var(--text-primary); }
+.credit-b-spread.is-breach-value { color: var(--breach-red); font-weight: 700; }
+.credit-b-widening { color: var(--spread-widening); background: var(--spread-widening-bg); }
+.credit-b-tightening { color: var(--telemetry-green); background: var(--telemetry-green-bg); }
+.credit-b-flat { color: var(--text-muted); }
+
+.credit-b-entity {
+  background: none; border: 0; padding: 0; cursor: pointer;
+  font: inherit;
+  font-weight: var(--body-data-weight);
+  letter-spacing: var(--body-data-tracking);
+  color: var(--text-primary);
+}
+.is-selected .credit-b-entity { color: var(--accent-primary); font-weight: var(--body-header-weight); }
+.credit-b-entity:hover { text-decoration: underline; }
+.credit-b-entity:focus-visible,
+.credit-b-link:focus-visible { outline: 1px solid var(--accent-primary); outline-offset: 1px; }
+.credit-b-sector { color: var(--text-secondary); }
+.credit-b-dash { color: var(--text-muted); }
+
+.credit-b-rating {
+  font-family: var(--font-quantitative-data-monospace);
+  font-size: var(--mono-subtle-size);
+  line-height: var(--mono-subtle-line-height);
+  font-weight: var(--mono-data-weight);
+  letter-spacing: var(--mono-subtle-tracking);
+  padding: 2px 6px;
+  border: 1px solid var(--surface-border);
+  border-radius: 2px;
+  background: var(--surface-subtle);
+  color: var(--rating-text);
+}
+.credit-b-proxy {
+  display: inline-block;
+  height: var(--proxy-chip-height);
+  line-height: calc(var(--proxy-chip-height) - 1px);
+  padding: 0 4px;
+  font-family: var(--font-quantitative-data-monospace);
+  font-size: var(--chip-text-size);
+  font-weight: var(--chip-text-weight);
+  letter-spacing: var(--chip-text-tracking);
+  border: 1px solid var(--surface-border-subtle);
+  border-radius: 2px;
+  background: var(--surface-subtle);
+  color: var(--text-secondary);
+}
+.credit-b-link {
+  color: var(--accent-primary);
+  font-size: var(--mono-subtle-size);
+  font-weight: var(--body-header-weight);
+  text-decoration: none;
+}
+.credit-b-link:hover { color: var(--accent-hover); text-decoration: underline; }
+
+.credit-b-empty { padding: 24px var(--cell-padding-x); text-align: center; color: var(--text-secondary); }
+.credit-b-empty-title { display: block; font-weight: var(--body-header-weight); color: var(--text-primary); margin-bottom: 2px; }
+
+.credit-b-term { padding: 12px; }
+.credit-b-term-head {
+  display: flex; align-items: center; gap: 12px;
+  border-bottom: 1px solid var(--surface-border); padding-bottom: 8px; margin-bottom: 8px;
+}
+.credit-b-term-title {
+  font-size: var(--body-header-size);
+  line-height: var(--body-header-line-height);
+  font-weight: var(--title-md-weight);
+  letter-spacing: var(--body-header-tracking);
+  text-transform: uppercase;
+}
+.credit-b-term-link { font-size: var(--body-header-size); }
+
+.credit-b-chart { width: 100%; height: auto; display: block; }
+.credit-b-grid { stroke: var(--surface-border); stroke-dasharray: 2 2; }
+.credit-b-axis { stroke: var(--surface-border-subtle); }
+.credit-b-tick {
+  font-family: var(--font-quantitative-data-monospace);
+  font-size: var(--mono-subtle-size);
+  fill: var(--text-muted);
+}
+.credit-b-limit { stroke: var(--breach-red); stroke-width: 1px; stroke-dasharray: 4 4; }
+.credit-b-limit-label {
+  font-family: var(--font-quantitative-data-monospace);
+  font-size: var(--mono-subtle-size);
+  font-weight: var(--chip-text-weight);
+  fill: var(--breach-red);
+}
+.credit-b-curve { stroke: var(--accent-primary); stroke-width: 1.5px; stroke-linecap: round; stroke-linejoin: round; }
+.credit-b-dot { fill: var(--accent-primary); stroke: var(--surface-container); stroke-width: 1.5px; }
+.credit-b-value {
+  font-family: var(--font-quantitative-data-monospace);
+  font-size: var(--mono-subtle-size);
+  font-weight: var(--mono-data-weight);
+  fill: var(--text-secondary);
+  /* Halo keeps the label legible where the limit line crosses it. */
+  paint-order: stroke;
+  stroke: var(--surface-container);
+  stroke-width: 3px;
+}
+.credit-b-tenor {
+  font-family: var(--font-primary-ui-sans);
+  font-size: var(--mono-subtle-size);
+  font-weight: var(--mono-data-weight);
+  fill: var(--text-muted);
+}
+.credit-b-benchmark .credit-b-value,
+.credit-b-benchmark .credit-b-tenor { fill: var(--accent-primary); font-weight: var(--chip-text-weight); }
