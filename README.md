@@ -3,9 +3,9 @@
 A small CVA (credit valuation adjustment) monitoring dashboard, built as a guided tour through an AI-assisted software lifecycle: design, build, component test, e2e test, review, docs. One React app, one AI tool per stage, and a recorded reason for each choice.
 
 <p align="center">
-  <img src="design/prototype-clickthrough.gif" alt="Click-through of the Stitch prototype: credit spread monitor, drill into the CVA monitor, then the counterparty deep-dive" width="600">
+  <img src="design/app-clickthrough.gif" alt="The built app: select counterparties on the credit spread monitor to update the term structure chart, then click through to the CVA monitor pre-filtered to that counterparty" width="900">
   <br>
-  <sub>Stitch prototype click-through: credit spreads to CVA charge to counterparty drill-down (design prototype, not the built app).</sub>
+  <sub>The built app: pick a name on the credit screen, watch the term structure update (Petrobras crosses the 200 bps limit), then click through to its CVA charge.</sub>
 </p>
 
 **Domain:** CVA charge by counterparty, with CDS spreads as a pricing input. The same shape as a full-stack CVA UI built in React/C# in a past role, rebuilt here to show stage-appropriate tool selection, not CVA methodology. Spreads and charges are static mock data; there is no pricing engine.
