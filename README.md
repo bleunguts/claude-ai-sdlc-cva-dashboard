@@ -36,7 +36,7 @@ The built app (React + TypeScript, mock data), captured at 2x.
 </p>
 
 <p align="center">
-  <img src="design/UI-stitch-deepdive.jpg" alt="Stitch counterparty deep-dive screen" width="600">
+  <img src="design/stitch-deepdive-2x.jpg" alt="Stitch counterparty deep-dive screen" width="900">
   <br>
   <sub><b>Stitch deep-dive (design only).</b> The first prompt over-scoped (two tables, engine telemetry). Naming exclusions and exact data fixed it on the next screen. Build is tracked in issue #34.</sub>
 </p>
