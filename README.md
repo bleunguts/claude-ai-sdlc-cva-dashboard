@@ -3,7 +3,7 @@
 A small CVA (credit valuation adjustment) monitoring dashboard, built as a guided tour through an AI-assisted software lifecycle: design, build, component test, e2e test, review, docs. One React app, one AI tool per stage, and a recorded reason for each choice.
 
 <p align="center">
-  <img src="design/app-clickthrough.gif" alt="The built app: select counterparties on the credit spread monitor to update the term structure chart, then click through to the CVA monitor pre-filtered to that counterparty" width="900">
+  <img src="app-clickthrough.gif" alt="The built app: select counterparties on the credit spread monitor to update the term structure chart, then click through to the CVA monitor pre-filtered to that counterparty" width="900">
   <br>
   <sub>The built app: pick a name on the credit screen, watch the term structure update (Petrobras crosses the 200 bps limit), then click through to its CVA charge.</sub>
 </p>
@@ -18,8 +18,8 @@ The built app (React + TypeScript, mock data), captured at 2x.
 
 <table>
   <tr>
-    <td width="50%"><img src="design/app-credit-spreads.png" alt="Built app: credit spread monitor with 5Y spread, 1D and 5D change, PROXY flag and term structure chart"></td>
-    <td width="50%"><img src="design/app-cva-monitor.png" alt="Built app: CVA monitor, filterable CVA charge by counterparty"></td>
+    <td width="50%"><img src="app-credit-spreads.png" alt="Built app: credit spread monitor with 5Y spread, 1D and 5D change, PROXY flag and term structure chart"></td>
+    <td width="50%"><img src="app-cva-monitor.png" alt="Built app: CVA monitor, filterable CVA charge by counterparty"></td>
   </tr>
   <tr>
     <td align="center"><sub><b>Credit spread monitor.</b> 5Y spread, 1D/5D change, PROXY flag, term structure for the selected name. Built in Module 7.</sub></td>
@@ -30,13 +30,13 @@ The built app (React + TypeScript, mock data), captured at 2x.
 ## From design to isolated component
 
 <p align="center">
-  <img src="design/storybook-populated.jpg" alt="Storybook showing the CvaGrid component in its Populated story" width="900">
+  <img src="storybook-populated.jpg" alt="Storybook showing the CvaGrid component in its Populated story" width="900">
   <br>
   <sub><b>Storybook.</b> <code>CvaGrid</code> isolated with Empty, Populated and Error stories, including null and stale-timestamp edge cases.</sub>
 </p>
 
 <p align="center">
-  <img src="design/stitch-deepdive-2x.jpg" alt="Stitch counterparty deep-dive screen" width="900">
+  <img src="stitch-deepdive-2x.jpg" alt="Stitch counterparty deep-dive screen" width="900">
   <br>
   <sub><b>Stitch deep-dive (design only).</b> The first prompt over-scoped (two tables, engine telemetry). Naming exclusions and exact data fixed it on the next screen. Build is tracked in issue #34.</sub>
 </p>
